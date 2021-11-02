@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharatereMovement : MonoBehaviour
+public class CharatereMovements : MonoBehaviour
 {
-    public int speed = 3;
+    public int speed = 12;
     public int skeed = 3;
     public double Angle = 0;
     public float mH;
