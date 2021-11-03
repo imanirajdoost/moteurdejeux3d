@@ -22,4 +22,14 @@ public class ChickenAnimationManager : MonoBehaviour
         yield return new WaitForSeconds(t);
         anim.SetBool("Eat", true);
     }
+
+    public void ChangeToScare()
+    {
+        anim.SetBool("Scared", true);
+    }
+
+    public void ChangeToSurprise()
+    {
+        anim.SetTrigger("Surprise");
+    }
 }
