@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class bonus : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +15,13 @@ public class bonus : MonoBehaviour
     {
         if (infoCollision.gameObject.CompareTag("Player"))
         {
-
-            Destroy(gameObject,2f);
+            
+            Destroy(gameObject,0f);
         }
     }
-        // Update is called once per frame
-        void Update()
+
+    // Update is called once per frame
+    void Update()
     {
         
     }

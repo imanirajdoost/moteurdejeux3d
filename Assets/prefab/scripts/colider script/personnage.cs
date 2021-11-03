@@ -7,6 +7,7 @@ public class personnage : MonoBehaviour
     // Start is called before the first frame update
     public int nbVies=1;
     public Animator death;
+    public CharatereMovements mouv;
 
     void Start()
     {
@@ -15,11 +16,20 @@ public class personnage : MonoBehaviour
     void mourir(int s)
     {
     }
+
+    private IEnumerator waitForSlowdown(float t)
+    {
+        yield return new WaitForSeconds(t);
+        mouv.speed--;
+
+    }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
-        if (infoCollision.gameObject.CompareTag("PowerUp"))
+        if (infoCollision.gameObject.CompareTag("SpeedUp"))
         {
             infoCollision.gameObject.SetActive(false);
+            mouv.speed+=5;
+            StartCoroutine(waitForSlowdown(2));
         }
         else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
         {
