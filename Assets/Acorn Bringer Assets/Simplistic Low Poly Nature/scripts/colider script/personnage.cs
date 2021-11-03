@@ -14,7 +14,7 @@ public class personnage : MonoBehaviour
     }
     void mourir(int s)
     {
-        death.Play()
+        //death.Play();
     }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {

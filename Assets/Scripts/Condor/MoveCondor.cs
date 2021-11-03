@@ -12,6 +12,8 @@ public class MoveCondor : MonoBehaviour
     public float downSpeed = 2f;
     public float upSpeed = 4f;
 
+    public GameObject chickChild;
+
     private void Update()
     {
         if (moveForward)
@@ -36,8 +38,10 @@ public class MoveCondor : MonoBehaviour
         yield return new WaitForSeconds(1f);
         moveDown = false;
         StartCoroutine(GoUp());
-        chick.transform.parent = this.transform;
-        chick.ChangeToScare();
+        chick.gameObject.SetActive(false);
+        chickChild.SetActive(true);
+        //chick.transform.parent = this.transform;
+        //chick.ChangeToScare();
     }
 
     private IEnumerator GoUp()
