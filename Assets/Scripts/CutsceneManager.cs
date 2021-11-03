@@ -10,14 +10,23 @@ public class CutsceneManager : MonoBehaviour
     public ChickenAnimationManager papaChick;
 
     public GameObject mainPlayer;
+    public GameObject startText;
 
-    private void Start()
+    private bool isStarted = false;
+
+    private void Update()
     {
-
+        if(!isStarted)
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                isStarted = true;
+                StartCutscene();
+            }
     }
 
     public void StartCutscene()
     {
+        startText.SetActive(false);
         condorManager.gameObject.SetActive(true);
         StartCoroutine(SwitchCameraAfter(cameras[1], 2));
         StartCoroutine(GrabChickAfter(6f));
@@ -30,6 +39,7 @@ public class CutsceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         mainPlayer.SetActive(true);
+        papaChick.gameObject.SetActive(false);
         SwitchCamera(cameras[2]);
     }
 

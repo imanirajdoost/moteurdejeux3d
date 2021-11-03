@@ -40,8 +40,6 @@ public class MoveCondor : MonoBehaviour
         StartCoroutine(GoUp());
         chick.gameObject.SetActive(false);
         chickChild.SetActive(true);
-        //chick.transform.parent = this.transform;
-        //chick.ChangeToScare();
     }
 
     private IEnumerator GoUp()
