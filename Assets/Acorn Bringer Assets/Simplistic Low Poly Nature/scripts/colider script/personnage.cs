@@ -14,11 +14,15 @@ public class personnage : MonoBehaviour
     }
     void mourir(int s)
     {
-        death.Play()
+        
     }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
-        if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
+        if (infoCollision.gameObject.CompareTag("PowerUp"))
+        {
+            infoCollision.gameObject.SetActive(false);
+        }
+        else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
         {
             infoCollision.gameObject.SetActive(false);
             nbVies--;

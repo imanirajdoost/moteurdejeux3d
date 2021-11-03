@@ -9,9 +9,15 @@ public class bonus : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
+    {
+        if (infoCollision.gameObject.CompareTag("Personnage"))
+        {
+            Destroy(GameObject);
+        }
+    }
+        // Update is called once per frame
+        void Update()
     {
         
     }
