@@ -9,10 +9,17 @@ public class CutsceneManager : MonoBehaviour
     public ChickenAnimationManager chick;
     public ChickenAnimationManager papaChick;
 
+    private SoundManager soundManager;
+
     public GameObject mainPlayer;
     public GameObject startText;
 
     private bool isStarted = false;
+
+    private void Awake()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
 
     private void Update()
     {
@@ -26,6 +33,11 @@ public class CutsceneManager : MonoBehaviour
 
     public void StartCutscene()
     {
+        if (soundManager != null)
+        {
+            soundManager.StopMenuMusic();
+            soundManager.PlayMainMusic();
+        }
         startText.SetActive(false);
         condorManager.gameObject.SetActive(true);
         StartCoroutine(SwitchCameraAfter(cameras[1], 2));
