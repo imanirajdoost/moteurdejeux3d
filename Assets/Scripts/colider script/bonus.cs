@@ -11,12 +11,16 @@ public class bonus : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
+    private IEnumerator waitForDestroy(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Destroy(gameObject, 50f);
+    }
+        void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
         if (infoCollision.gameObject.CompareTag("Player"))
         {
-            
-            Destroy(gameObject,0f);
+            StartCoroutine(waitForDestroy(10));
         }
     }
 

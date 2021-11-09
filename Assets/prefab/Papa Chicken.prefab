@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &366865219662843882
 Transform:
   m_ObjectHideFlags: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f7729b3a0118b4aa094b5f63b7128c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   skeed: 0
   Angle: 0
   mH: 0
@@ -150,19 +150,6 @@ MonoBehaviour:
   RotateSpeed: 0
   StabilisationSpeed: 0.025
   MAXANGLE: 5
---- !u!65 &366865220708603285
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366865220027819000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5910771, y: 1.850515, z: 1.9752325}
-  m_Center: {x: 0.0017941528, y: 0.56907344, z: 1.289666}
 --- !u!54 &366865220727022672
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -177,7 +164,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &366865220727022673
 MonoBehaviour:
@@ -197,6 +184,34 @@ MonoBehaviour:
   RotateSpeed: 0.03
   StabilisationSpeed: 0.025
   UDS: 8
+--- !u!65 &366865220708603285
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366865220027819000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5910771, y: 1.850515, z: 1.9752325}
+  m_Center: {x: 0.0017941528, y: 0.56907344, z: 1.289666}
+--- !u!114 &2011247532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366865220027819000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14cd7c6c3ade2a438c1e9081f38e437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbVies: 1
+  death: {fileID: 0}
+  mouv: {fileID: 366865219662843797}
 --- !u!1001 &366865220027917640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,6 +222,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
       propertyPath: m_Name
       value: Chicken
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
       propertyPath: m_RootOrder

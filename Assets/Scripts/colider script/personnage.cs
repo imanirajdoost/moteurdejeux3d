@@ -20,16 +20,18 @@ public class personnage : MonoBehaviour
     private IEnumerator waitForSlowdown(float t)
     {
         yield return new WaitForSeconds(t);
-        mouv.speed--;
+        mouv.speed-=4;
 
     }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
+        Debug.Log("détécté");
         if (infoCollision.gameObject.CompareTag("SpeedUp"))
         {
             infoCollision.gameObject.SetActive(false);
             mouv.speed+=5;
-            StartCoroutine(waitForSlowdown(2));
+            StartCoroutine(waitForSlowdown(5));
+
         }
         else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
         {
