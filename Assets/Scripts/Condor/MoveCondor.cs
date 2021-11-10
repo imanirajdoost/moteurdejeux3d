@@ -27,6 +27,11 @@ public class MoveCondor : MonoBehaviour
             transform.Translate(Vector3.up * upSpeed * Time.deltaTime);
     }
 
+    public void ChangeSpeed(float newSpeed)
+    {
+        forwardSpeed = newSpeed;
+    }
+
     public void PickupChick(ChickenAnimationManager chick)
     {
         StartCoroutine(GoDown(chick));

@@ -14,6 +14,8 @@ public class CutsceneManager : MonoBehaviour
     public GameObject mainPlayer;
     public GameObject startText;
 
+    public float condorNewSpeed = 3.5f;
+
     private bool isStarted = false;
 
     private void Awake()
@@ -53,6 +55,7 @@ public class CutsceneManager : MonoBehaviour
         mainPlayer.SetActive(true);
         papaChick.gameObject.SetActive(false);
         SwitchCamera(cameras[2]);
+        condorManager.ChangeSpeed(condorNewSpeed);
     }
 
     private IEnumerator SurprisePapaChickenAfter(float t)
