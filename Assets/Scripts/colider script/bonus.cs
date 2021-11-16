@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class bonus : MonoBehaviour
 {
+    private Animator anim;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        anim = GetComponent<Animator>();
     }
+
     private IEnumerator waitForDestroy(float t)
     {
         yield return new WaitForSeconds(t);
-        Destroy(gameObject, 50f);
+        Destroy(gameObject);
     }
-        void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
+    void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
+        //Debug.Log("HELLLLO FROM BONUSSSSSSSSSSSSSSSSSSSSSS");
         if (infoCollision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(waitForDestroy(10));
+                anim.SetTrigger("Score");
+            StartCoroutine(waitForDestroy(3));
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

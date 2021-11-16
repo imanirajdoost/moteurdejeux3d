@@ -28,10 +28,8 @@ public class personnage : MonoBehaviour
         Debug.Log("détécté");
         if (infoCollision.gameObject.CompareTag("SpeedUp"))
         {
-            infoCollision.gameObject.SetActive(false);
             mouv.speed+=5;
             StartCoroutine(waitForSlowdown(5));
-
         }
         else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
         {
@@ -44,11 +42,5 @@ public class personnage : MonoBehaviour
         {
             infoCollision.gameObject.SetActive(false);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
