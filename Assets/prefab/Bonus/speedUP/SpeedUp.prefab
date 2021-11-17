@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6253263824932446368}
   - component: {fileID: 1085192414}
   - component: {fileID: 1129030794}
+  - component: {fileID: 1706013786}
   m_Layer: 0
   m_Name: SpeedUp
   m_TagString: SpeedUp
@@ -78,6 +79,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1706013786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253263824932446399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d775d70e6e4186e4c90a02d1ac3f10ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 5
 --- !u!1001 &5239467362966452310
 PrefabInstance:
   m_ObjectHideFlags: 0
