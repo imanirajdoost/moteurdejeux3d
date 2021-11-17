@@ -8,6 +8,11 @@ public class personnage : MonoBehaviour
     public int nbVies=1;
     public Animator death;
     public CharatereMovements mouv;
+    private IEnumerator waitForDestroy(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -15,6 +20,8 @@ public class personnage : MonoBehaviour
     }
     void mourir(int s)
     {
+        //death.SetTrigger("PlayerDeath");
+        waitForDestroy(5);
     }
 
     private IEnumerator waitForSlowdown(float t)

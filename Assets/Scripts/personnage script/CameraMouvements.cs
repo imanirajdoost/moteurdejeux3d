@@ -9,14 +9,25 @@ public class CameraMouvements : MonoBehaviour
     public float RotateSpeed = 0.05f;
     public float StabilisationSpeed = 0.025f;
     public int MAXANGLE = 15;
+    private bool translation = false;
+    private int max_tr = 5;
     void Start()
     {
         
+    }
+    void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
+    {
+        translation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (translation)
+        {
+
+        }
         float mH = Input.GetAxis("Horizontal");
         float mV = Input.GetAxis("Vertical");
         if (mH > 0)
