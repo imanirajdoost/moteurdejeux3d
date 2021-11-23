@@ -10,7 +10,7 @@ public class Disabler : MonoBehaviour
     private void OnEnable()
     {
         if (papaChicken == null)
-            papaChicken = FindObjectOfType<Charateremodel>().gameObject;
+            papaChicken = FindObjectOfType<Charateremodel>(true).gameObject;
     }
 
     private void Update()

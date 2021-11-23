@@ -22,11 +22,18 @@ public class ItemGenerator : MonoBehaviour
 
     private void Awake()
     {
-        generatorManager = FindObjectOfType<Generator>();
+        FindGeneratorManager();
+    }
+
+    private void FindGeneratorManager()
+    {
+        generatorManager = FindObjectOfType<Generator>(true);
     }
 
     private void OnEnable()
     {
+        if (generatorManager == null)
+            FindGeneratorManager();
         generatorManager.OnGeneratorStart += GeneratorManager_OnGeneratorStart;
     }
 
