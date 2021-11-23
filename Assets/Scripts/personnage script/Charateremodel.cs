@@ -11,6 +11,7 @@ public class Charateremodel : MonoBehaviour
     public float  RotateSpeed = 0.2f;
     public float StabilisationSpeed = 0.1f;
     public int UDS = 8;
+    public bool est_mort = false;
 
     // Update is called once per frame
     void Update()
@@ -18,65 +19,66 @@ public class Charateremodel : MonoBehaviour
         float mH = Input.GetAxis("Horizontal");
         float mV = Input.GetAxis("Vertical");
         //droite 
-
-        if (mH>0)
+        if (!est_mort)
         {
-            if (Angle > -MAXANGLE)
+            if (mH > 0)
             {
-                transform.Rotate(0, 0, RotateSpeed*-1, Space.Self);
-                Angle -= RotateSpeed ;
+                if (Angle > -MAXANGLE)
+                {
+                    transform.Rotate(0, 0, RotateSpeed * -1, Space.Self);
+                    Angle -= RotateSpeed;
+                }
             }
-        }
-        //gauche
-        else if (mH<0)
-        {
-            if (Angle < MAXANGLE)
+            //gauche
+            else if (mH < 0)
             {
-                transform.Rotate(0, 0, RotateSpeed, Space.Self);
-                Angle += RotateSpeed;
+                if (Angle < MAXANGLE)
+                {
+                    transform.Rotate(0, 0, RotateSpeed, Space.Self);
+                    Angle += RotateSpeed;
+                }
             }
-        }
-        else if (Angle > 0)
-        {
-            transform.Rotate(0, 0, StabilisationSpeed *-1, Space.Self);
-            Angle -= StabilisationSpeed;
-        }
-        else if (Angle < 0)
-        {
-            transform.Rotate(0, 0, StabilisationSpeed, Space.Self);
-            Angle += StabilisationSpeed;
+            else if (Angle > 0)
+            {
+                transform.Rotate(0, 0, StabilisationSpeed * -1, Space.Self);
+                Angle -= StabilisationSpeed;
+            }
+            else if (Angle < 0)
+            {
+                transform.Rotate(0, 0, StabilisationSpeed, Space.Self);
+                Angle += StabilisationSpeed;
+
+            }
+            if (mV > 0)
+            {
+                if (VAngle > -MAXANGLE / UDS)
+                {
+                    transform.Rotate(-RotateSpeed / UDS, 0, 0, Space.Self);
+                    VAngle -= RotateSpeed / UDS;
+
+                }
+            }
+            else if (mV < 0)
+            {
+                if (VAngle < MAXANGLE / UDS)
+                {
+                    transform.Rotate(RotateSpeed / UDS, 0, 0, Space.Self);
+                    VAngle += RotateSpeed / UDS;
+                }
+            }
+            else if (VAngle > 0)
+            {
+                transform.Rotate(-StabilisationSpeed / UDS, 0, 0, Space.Self);
+                VAngle -= (StabilisationSpeed / UDS);
+            }
+            else if (VAngle < 0)
+            {
+                transform.Rotate((StabilisationSpeed / UDS), 0, 0, Space.Self);
+                VAngle += (StabilisationSpeed / UDS);
+
+            }
 
         }
-        if (mV > 0)
-        {
-            if (VAngle > -MAXANGLE/UDS)
-            {
-                transform.Rotate(-RotateSpeed/ UDS, 0, 0, Space.Self);
-                VAngle -= RotateSpeed/ UDS;
- 
-            }
-        }
-        else if (mV < 0)
-        {
-            if (VAngle < MAXANGLE/UDS)
-            {
-                transform.Rotate(RotateSpeed / UDS, 0, 0, Space.Self);
-                VAngle += RotateSpeed / UDS;
-            }
-        }
-        else if (VAngle > 0)
-        {
-            transform.Rotate(-StabilisationSpeed/ UDS, 0, 0, Space.Self);
-            VAngle -= (StabilisationSpeed / UDS);
-        }
-        else if (VAngle < 0)
-        {
-            transform.Rotate((StabilisationSpeed/ UDS), 0, 0, Space.Self);
-            VAngle += (StabilisationSpeed/ UDS);
-
-        }
-        
-
 
 
     }
