@@ -9,24 +9,42 @@ public class CameraMouvements : MonoBehaviour
     public float RotateSpeed = 0.05f;
     public float StabilisationSpeed = 0.025f;
     public int MAXANGLE = 15;
-    private bool translation = false;
-    private int max_tr = 5;
+    private int nb = 0;
+    bool ready = false;
+    float initpos;
+
+
     void Start()
     {
-        
+        initpos=transform.localPosition.z;
     }
+    private IEnumerator waitForback(float t)
+    {
+        
+        yield return new WaitForSeconds(t);
+        Debug.Log("fin");
+        ready = false;
+
+     }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
-        translation = true;
+        if (infoCollision.gameObject.CompareTag("SpeedUp"))
+        {
+            ready = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (translation)
+        if(ready)
         {
-
+            transform.Translate(Vector3.forward *Time.deltaTime*(-1));
+        }
+        else
+        {
+            if(initpos!= transform.localPosition.z)
+                transform.Translate(Vector3.forward * Time.deltaTime);
         }
         float mH = Input.GetAxis("Horizontal");
         float mV = Input.GetAxis("Vertical");
