@@ -18,9 +18,9 @@ public class personnage : MonoBehaviour
     {
         
     }
-    void mourir(int s)
+    public void mourir(int s)
     {
-        //death.SetTrigger("PlayerDeath");
+        death.SetBool("est_mort", true);
         waitForDestroy(5);
     }
 
@@ -40,7 +40,7 @@ public class personnage : MonoBehaviour
         }
         else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
         {
-            infoCollision.gameObject.SetActive(false);
+            //infoCollision.gameObject.SetActive(false);
             nbVies--;
             if (nbVies == 0)
                 mourir(10);

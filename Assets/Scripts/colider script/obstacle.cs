@@ -4,24 +4,43 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public GameObject ds;
+    private bool est_mort = false;
+    public CharatereMovements Cmouv;
+    public Charateremodel Cmodel;
+    public personnage perso;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if(est_mort)
+        {
 
+        }
     }
-    private IEnumerator waitForDestroy(float t)
+    //jouer animation de mort 
+    void mourir()
+    {
+        return;
+    }
+    private IEnumerator waitFordead(float t)
     {
         yield return new WaitForSeconds(t);
-        Destroy(gameObject, 50f);
+        ds.SetActive(true);
+        Time.timeScale = 0;
     }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
         if (infoCollision.gameObject.CompareTag("Player"))
         {
+            est_mort = true;
+            Cmouv.est_mort = true;
+            Cmodel.est_mort = true;
+            perso.mourir(2);
+            StartCoroutine(waitFordead(4f));
 
-            StartCoroutine(waitForDestroy(10));
+            
         }
     }
 

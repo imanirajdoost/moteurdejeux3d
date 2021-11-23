@@ -9,14 +9,20 @@ public class CharatereMovements : MonoBehaviour
     public double Angle = 0;
     public float mH;
     public float mV;
-
+    public bool est_mort = false;
     public Rigidbody rb;
 
     void Update()
     {
-        mH = Input.GetAxis("Horizontal");
-        mV = Input.GetAxis("Vertical");
-        rb.velocity = new Vector3(-speed, mV * speed, mH * speed);
-        
+        if (!est_mort)
+        {
+            mH = Input.GetAxis("Horizontal");
+            mV = Input.GetAxis("Vertical");
+            rb.velocity = new Vector3(-speed, mV * speed, mH * speed);
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+        }
     }
 }

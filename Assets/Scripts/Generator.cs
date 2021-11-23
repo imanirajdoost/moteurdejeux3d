@@ -16,6 +16,9 @@ public class Generator : MonoBehaviour
 
     public Queue<GameObject> objectsToDestroy;
 
+    public delegate void generatorDelegate();
+    public event generatorDelegate OnGeneratorStart;
+
     private void Start()
     {
         generatorMarker.transform.position = papaChicken.transform.position;
@@ -27,6 +30,9 @@ public class Generator : MonoBehaviour
     {
         if (papaChicken.transform.position.x < generatorMarker.transform.position.x)
         {
+            if (OnGeneratorStart != null)
+                OnGeneratorStart();
+
             generatorMarker.transform.position = new Vector3(generatorMarker.transform.position.x - generatorOffset,
                 generatorMarker.transform.position.y,
                 generatorMarker.transform.position.z);
