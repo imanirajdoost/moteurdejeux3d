@@ -28,10 +28,12 @@ public class CameraMouvements : MonoBehaviour
      }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
+        /*
         if (infoCollision.gameObject.CompareTag("SpeedUp"))
         {
             ready = true;
         }
+        */
     }
 
     // Update is called once per frame
