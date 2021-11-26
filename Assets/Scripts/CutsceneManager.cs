@@ -26,8 +26,8 @@ public class CutsceneManager : MonoBehaviour
 
     private void Update()
     {
-        if(!isStarted)
-            if(Input.GetKeyDown(KeyCode.Space))
+        if (!isStarted)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 isStarted = true;
                 StartCutscene();

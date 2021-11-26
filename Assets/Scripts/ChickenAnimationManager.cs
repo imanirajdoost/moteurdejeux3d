@@ -9,6 +9,8 @@ public class ChickenAnimationManager : MonoBehaviour
 
     private bool shouldMoveUp = false;
     public float upSpeed = 2f;
+    public bool eatAnim = true;
+    public bool flyAnim = false;
 
     private void Awake()
     {
@@ -17,13 +19,27 @@ public class ChickenAnimationManager : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(EnableEatAfter(waitTime));
+        if(eatAnim)
+            StartCoroutine(EnableEatAfter(waitTime));
+        if (flyAnim)
+            StartCoroutine(EnableFlyAfter(waitTime));
     }
 
     private IEnumerator EnableEatAfter(float t)
     {
         yield return new WaitForSeconds(t);
         anim.SetBool("Eat", true);
+    }
+
+    private IEnumerator EnableFlyAfter(float t)
+    {
+        yield return new WaitForSeconds(t);
+        ChangeToFly();
+    }
+
+    public void ChangeToFly()
+    {
+        anim.SetBool("Fly", true);
     }
 
     public void ChangeToScare()

@@ -4,19 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages different states of the game
+/// This is a singletone class
+/// Written by: Iman IRAJ DOOST
+/// </summary>
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager instance;     //Singletone object
 
-    public bool isDead = false;
-
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(this);
-    }
+    public bool isDead = false;             //Wheather or not the player is dead
+    public bool isWon = false;              //Wheather or not the player has won
 
     public GameObject deathScreen;
 
@@ -28,14 +26,46 @@ public class GameManager : MonoBehaviour
 
     public Slider sliderDistance;
 
+    private EndCutscenemManager endSceneManager;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(this);
+
+        if (endSceneManager == null)
+            endSceneManager = FindObjectOfType<EndCutscenemManager>();
+    }
+
+    private void Win()
+    {
+        Debug.Log("YOU WONNNNNNNNNNN!");
+        if (!isWon)
+        {
+            isWon = true;
+            endSceneManager.StartEndCutscene();
+            papaChicken.SetActive(false);
+            condorObject.SetActive(false);
+        }
+
+    }
+
+    private void Lose()
+    {
+        Debug.Log("YOU lost!!");
+    }
+
     private void Update()
     {
-        float dist = CalculateDistance();
-        UpdateSlider(dist);
+        float NormalDist = CalculateDistance();
+        UpdateSlider(NormalDist);
+        float dist = Vector2.Distance(papaChicken.transform.position,condorObject.transform.position);
         if (dist < winDist)
-            Debug.Log("YOU WONNNNNNNNNNN!");
+            Win();
         if (dist > maxDistance)
-            Debug.Log("YOU LOST!!!!!!");
+            Lose();
 
         if (isDead)
         {
