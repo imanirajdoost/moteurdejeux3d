@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc118e902915c042be554920dcde683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   deathScreen: {fileID: 705508898}
   papaChicken: {fileID: 1592261272}
   condorObject: {fileID: 624858150}
@@ -447,6 +448,51 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 366865219990166434, guid: 773a738f016bdf24ab8a36eed797cdb8, type: 3}
   m_PrefabInstance: {fileID: 392300831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &66507985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66507986}
+  - component: {fileID: 66507987}
+  m_Layer: 0
+  m_Name: Coin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &66507986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66507985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 80057358}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &66507987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66507985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dadb643b72849343ae6449640ccf631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 4663897732071005519, guid: 0c41033832013de4fa49dd0c175e1942, type: 3}
+  amount: 2
 --- !u!1 &80057357
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +523,7 @@ Transform:
   - {fileID: 897360582}
   - {fileID: 298238009}
   - {fileID: 1541309280}
+  - {fileID: 66507986}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1700,6 +1747,7 @@ MonoBehaviour:
   objectPoolers:
   - {fileID: 298238010}
   - {fileID: 1541309281}
+  - {fileID: 66507987}
   minX: -21
   maxX: -15
   minY: 6.5
@@ -1875,7 +1923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &540601056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2928,7 +2976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dadb643b72849343ae6449640ccf631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 659040759333379681, guid: 26cb94353e89ac1438599ecb3d84fa71, type: 3}
+  pooledObject: {fileID: 5907042015536219801, guid: 979885d0670d3ef419d94263b4ad3fbf, type: 3}
   amount: 2
 --- !u!1001 &1559259735
 PrefabInstance:
