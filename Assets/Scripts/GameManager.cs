@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;     //Singletone object
 
+
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
 
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     public Slider sliderDistance;
 
     private EndCutscenemManager endSceneManager;
+
+    public int nbcoin = 0;
 
     private void Awake()
     {
