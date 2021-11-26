@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4976,8 +4976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shines: {fileID: 695409878}
-  audio: {fileID: 2012668219}
-  play: 0
+  audi: {fileID: 2012668219}
 --- !u!1001 &5510180081409630238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5003,15 +5002,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.93
+      value: 50.431904
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.16
+      value: 4.050001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.85363
+      value: -13.827524
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalRotation.w

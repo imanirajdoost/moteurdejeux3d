@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public bool isDead = false;
+    public int nbcoin = 0;
 
     private void Awake()
     {

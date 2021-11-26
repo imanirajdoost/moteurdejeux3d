@@ -9,6 +9,8 @@ public class bonus : MonoBehaviour
     private int decal=0;
     public int vitesse = 1;
     public CameraMouvements cam;
+    public ParticleSystem shines; // particule qui se joue quand on entre dans l'anneau 
+    public AudioSource audi;   // son qui se joue quand on on entre dans l'anneau 
 
     private void Awake()
     {
@@ -19,14 +21,16 @@ public class bonus : MonoBehaviour
     private IEnumerator waitForDestroy(float t)
     {
         yield return new WaitForSeconds(t);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
         void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
     {
         //Debug.Log("HELLLLO FROM BONUSSSSSSSSSSSSSSSSSSSSSS");
         if (infoCollision.gameObject.CompareTag("Player"))
         {
-                anim.SetTrigger("Score");
+            anim.SetTrigger("Score");
+            shines.Play();
+            audi.Play();
             cam.zoom();
             StartCoroutine(waitForDestroy(1));
         }

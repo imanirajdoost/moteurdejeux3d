@@ -9,6 +9,7 @@ public class personnage : MonoBehaviour
     private int nbcoin = 0;
     public Animator death;
     public CharatereMovements mouv;
+    private bool ISBossted = false;
     private IEnumerator waitForDestroy(float t)
     {
         yield return new WaitForSeconds(t);
@@ -28,7 +29,8 @@ public class personnage : MonoBehaviour
     private IEnumerator waitForSlowdown(float t)
     {
         yield return new WaitForSeconds(t);
-        mouv.speed-=4;
+        mouv.speed-=5;
+        ISBossted = false;
 
     }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
@@ -36,8 +38,12 @@ public class personnage : MonoBehaviour
         Debug.Log("détécté");
         if (infoCollision.gameObject.CompareTag("SpeedUp"))
         {
-            mouv.speed+=5;
-            StartCoroutine(waitForSlowdown(5));
+            if (!ISBossted)
+            {
+                mouv.speed += 5;
+                ISBossted = true;
+                StartCoroutine(waitForSlowdown(5));
+            }
         }
         else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
         {
