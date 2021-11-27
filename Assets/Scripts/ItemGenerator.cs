@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages item generation
+/// </summary>
 public class ItemGenerator : MonoBehaviour
 {
     [Header("Items")]
-    public ObjectPooler[] objectPoolers;
+    public ObjectPooler[] objectPoolers;    //Object poolers
 
     [Header("Boundary")]
-    public float minX;
+    public float minX;          //Boundary of the spawned objects
     public float maxX;
     public float minY;
     public float maxY;
 
     [Header("Options")]
-    public float itemSpace;
-    public float numberOfItems;
-    public GameObject papaChicken;
+    public float itemSpace;         //Space between generated objects
+    public float numberOfItems;     //Max objects to spawn before spawning again
+    public GameObject papaChicken; 
 
     public Generator generatorManager;
 
@@ -34,6 +37,7 @@ public class ItemGenerator : MonoBehaviour
     {
         if (generatorManager == null)
             FindGeneratorManager();
+        //Start when the generator starts
         generatorManager.OnGeneratorStart += GeneratorManager_OnGeneratorStart;
     }
 

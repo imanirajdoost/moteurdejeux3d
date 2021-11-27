@@ -13,24 +13,26 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;     //Singletone object
 
-
+    [Header("Options")]
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
 
-    public GameObject deathScreen;
+    public GameObject deathScreen;          //Screen to show when player fails
 
-    public GameObject papaChicken;
-    public GameObject condorObject;
+    public GameObject papaChicken;          //Papa chicken object
+    public GameObject condorObject;         //Condor object
 
-    public float maxDistance = 20f;
-    public float winDist = 1f;
+    [Header("Win and Lose Options")]
+    public float maxDistance = 20f;         //Max Distance to be from the condor (Player will lose if they are further away)
+    public float winDist = 1f;              //Minimum distance from condor to win the game
 
-    public Slider sliderDistance;
-    public Text coinTextUI;
+    [Header("UI")]
+    public Slider sliderDistance;           //Slider that shows player's distance to condor
+    public Text coinTextUI;                 //Text UI that shows the number of coins that player has collected
 
+
+    public int nbcoin = 0;                  //Number of collected coins
     private EndCutscenemManager endSceneManager;
-
-    public int nbcoin = 0;
 
     private void Awake()
     {
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour
             endSceneManager = FindObjectOfType<EndCutscenemManager>();
     }
 
+    /// <summary>
+    /// Adds a coin to the inventory and updates UI
+    /// </summary>
     public void AddCoin()
     {
         nbcoin++;
@@ -54,6 +59,9 @@ public class GameManager : MonoBehaviour
         coinTextUI.text = nbcoin.ToString();
     }
 
+    /// <summary>
+    /// Show the ending cutscene when player wins
+    /// </summary>
     private void Win()
     {
         if (isDead)
@@ -73,6 +81,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Show game over when player loses
+    /// </summary>
     private void Lose()
     {
         Debug.Log("YOU lost!!");
@@ -81,6 +92,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //Calculate distance from player to condor each frame to see if player has won/lost
+        //Get the normal of the distance [0,1] and update the slider accordingly
         float NormalDist = CalculateDistance();
         UpdateSlider(NormalDist);
         float dist = Vector2.Distance(papaChicken.transform.position,condorObject.transform.position);
@@ -99,6 +112,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// What happens when player's game is over
+    /// </summary>
     public void GameOver()
     {
         deathScreen.SetActive(true);
@@ -106,6 +122,10 @@ public class GameManager : MonoBehaviour
         isDead = true;
     }
 
+    /// <summary>
+    /// Normalizes the distance between player and condor between [0,1] to update the slider accordingly
+    /// </summary>
+    /// <returns>Normalized distance between 0 and 1</returns>
     private float CalculateDistance()
     {
         return 1- Normalize(Vector2.Distance(papaChicken.transform.position, condorObject.transform.position));

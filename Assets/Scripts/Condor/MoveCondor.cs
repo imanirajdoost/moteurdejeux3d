@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the condor movement
+/// By Iman IRAJ DOOST
+/// </summary>
 public class MoveCondor : MonoBehaviour
 {
     public bool moveForward;

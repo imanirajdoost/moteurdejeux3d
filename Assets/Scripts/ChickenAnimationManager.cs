@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages chicken animation
+/// By Iman IRAJ DOOST
+/// </summary>
 public class ChickenAnimationManager : MonoBehaviour
 {
     private Animator anim;

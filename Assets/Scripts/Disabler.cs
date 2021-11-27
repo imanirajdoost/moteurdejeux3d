@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Disables object after some time
+/// By Iman IRAJ DOOST
+/// </summary>
 public class Disabler : MonoBehaviour
 {
     private GameObject papaChicken;

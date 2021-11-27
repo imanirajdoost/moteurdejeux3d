@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A list of cached game objects to avoid using Create/Destroy objects
+/// and instead, using Enable/Disable to avoid memory and processing overhead
+/// </summary>
 public class ObjectPooler : MonoBehaviour
 {
-    public GameObject pooledObject;
-    public int amount;
+    public GameObject pooledObject;         //Object to be pooled
+    public int amount;                      //Number of spawned objects of the pooled object at the start of the scene
 
-    private List<GameObject> poolList;
+    private List<GameObject> poolList;      //List of the pooled objects
 
     private void Start()
     {
+        //Instantiate the list and spawn the game objects
         poolList = new List<GameObject>();
         for (int i = 0; i < amount; i++)
         {
@@ -20,6 +25,11 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns a pooled object from the list
+    /// If no object is available, it will create one
+    /// </summary>
+    /// <returns>An object from the list</returns>
     public GameObject GetPooledObject()
     {
         if (poolList == null)

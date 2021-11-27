@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages all sounds in the game
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public bool isMute = false;
