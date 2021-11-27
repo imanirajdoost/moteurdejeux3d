@@ -23,8 +23,8 @@ public class Coin : MonoBehaviour
         GameManager.instance.nbcoin++;
         nc.addcoin();
         //arreter les particules et le son (car l'objet sera réutiliser ) 
-        shines.Pause();
-        audi.Pause();
+        shines.Stop();
+        audi.Stop();
 
 
     }
