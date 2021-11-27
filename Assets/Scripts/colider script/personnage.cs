@@ -66,7 +66,7 @@ public class personnage : MonoBehaviour
                 //sans oublier de le dire a actual speed pour pouvoir reset la vitesse initial 
                 actualSpeed += 2;
                 mouv.speed += 2;
-                if (actualSpeed > 10 && ComboSound!=null && !ComboSound.isPlaying)
+                if (actualSpeed > 8 && ComboSound!=null && !ComboSound.isPlaying)
                     ComboSound.Play();
 
             }
