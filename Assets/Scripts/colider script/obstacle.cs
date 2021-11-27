@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class obstacle : MonoBehaviour
 {
     //private bool est_mort = false;
     public CharatereMovements Cmouv;

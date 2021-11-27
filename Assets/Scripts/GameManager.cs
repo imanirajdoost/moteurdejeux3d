@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public float winDist = 1f;
 
     public Slider sliderDistance;
+    public Text coinTextUI;
 
     private EndCutscenemManager endSceneManager;
 
@@ -40,6 +41,17 @@ public class GameManager : MonoBehaviour
 
         if (endSceneManager == null)
             endSceneManager = FindObjectOfType<EndCutscenemManager>();
+    }
+
+    public void AddCoin()
+    {
+        nbcoin++;
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        coinTextUI.text = nbcoin.ToString();
     }
 
     private void Win()
@@ -64,6 +76,7 @@ public class GameManager : MonoBehaviour
     private void Lose()
     {
         Debug.Log("YOU lost!!");
+        GameOver();
     }
 
     private void Update()
