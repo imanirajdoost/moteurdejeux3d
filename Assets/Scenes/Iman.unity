@@ -158,7 +158,7 @@ MonoBehaviour:
   papaChicken: {fileID: 1592261272}
   condorObject: {fileID: 624858150}
   maxDistance: 100
-  winDist: 2
+  winDist: 3
   sliderDistance: {fileID: 360932800}
   nbcoin: 0
 --- !u!4 &14323316
