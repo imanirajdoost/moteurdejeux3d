@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages chicken animation
+/// By Iman IRAJ DOOST
+/// </summary>
 public class ChickenAnimationManager : MonoBehaviour
 {
     private Animator anim;
@@ -9,6 +13,9 @@ public class ChickenAnimationManager : MonoBehaviour
 
     private bool shouldMoveUp = false;
     public float upSpeed = 2f;
+    public bool eatAnim = true;
+    public bool flyAnim = false;
+    public ParticleSystem par;
 
     private void Awake()
     {
@@ -17,13 +24,27 @@ public class ChickenAnimationManager : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(EnableEatAfter(waitTime));
+        if(eatAnim)
+            StartCoroutine(EnableEatAfter(waitTime));
+        if (flyAnim)
+            StartCoroutine(EnableFlyAfter(waitTime));
     }
 
     private IEnumerator EnableEatAfter(float t)
     {
         yield return new WaitForSeconds(t);
         anim.SetBool("Eat", true);
+    }
+
+    private IEnumerator EnableFlyAfter(float t)
+    {
+        yield return new WaitForSeconds(t);
+        ChangeToFly();
+    }
+
+    public void ChangeToFly()
+    {
+        anim.SetBool("Fly", true);
     }
 
     public void ChangeToScare()
@@ -33,6 +54,8 @@ public class ChickenAnimationManager : MonoBehaviour
 
     public void ChangeToSurprise()
     {
+        if (par != null)
+            par.Play();
         anim.SetTrigger("Surprise");
     }
 

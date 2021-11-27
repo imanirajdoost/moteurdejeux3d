@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages all sounds in the game
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public bool isMute = false;
@@ -9,6 +12,9 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource musicMenu;
     public AudioSource mainMusic;
+    public AudioSource airplaneSound;
+    public AudioSource punchSound;
+    public AudioSource victorySound;
 
     public void SetIsMute()
     {
@@ -39,8 +45,28 @@ public class SoundManager : MonoBehaviour
         StopSound(musicMenu);
     }
 
+    public void StopMainMusic()
+    {
+        StopSound(mainMusic);
+    }
+
     public void PlayMainMusic()
     {
         PlaySound(mainMusic);
+    }
+
+    public void PlayAirplaneSound()
+    {
+        PlaySound(airplaneSound);
+    }
+
+    public void PlayPunchSound()
+    {
+        PlaySound(punchSound);
+    }
+
+    public void PlayVictorySound()
+    {
+        PlaySound(victorySound);
     }
 }

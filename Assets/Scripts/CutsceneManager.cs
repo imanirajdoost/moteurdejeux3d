@@ -2,21 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The first cutscene before starting the code
+/// By Iman IRAJ DOOST
+/// </summary>
 public class CutsceneManager : MonoBehaviour
 {
-    public Camera[] cameras;
-    public MoveCondor condorManager;
-    public ChickenAnimationManager chick;
-    public ChickenAnimationManager papaChick;
+    #region Public Vars
+    [Header("Cutscene Objects")]
+    public Camera[] cameras;                    //Cameras used in cutscene
+    public MoveCondor condorManager;            //Condor Manager to change condor's speed
+    public ChickenAnimationManager chick;       //Object to change little chicken's animation
+    public ChickenAnimationManager papaChick;   //Object to change papa chicken's animation
+    public GameObject sliderObject;             //Slider UI object
+    public GameObject tutObject;                //Tutorial Game object
+    public GameObject mainPlayer;               //Main Player (Chicken)
+    public GameObject startText;                //Starting text on UI
+    public float condorNewSpeed = 3.5f;         //Condor's speed after the cutscene
+    #endregion
 
-    private SoundManager soundManager;
-
-    public GameObject mainPlayer;
-    public GameObject startText;
-
-    public float condorNewSpeed = 3.5f;
-
-    private bool isStarted = false;
+    #region Private Vars
+    private SoundManager soundManager;          //Sound Manager object
+    private bool isStarted = false;             //Check if game is started
+    #endregion
 
     private void Awake()
     {
@@ -25,14 +33,17 @@ public class CutsceneManager : MonoBehaviour
 
     private void Update()
     {
-        if(!isStarted)
-            if(Input.GetKeyDown(KeyCode.Space))
+        if (!isStarted)                             //Check if game is started, if not wait for player to press space
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 isStarted = true;
                 StartCutscene();
             }
     }
 
+    #region Methods
+
+    
     public void StartCutscene()
     {
         if (soundManager != null)
@@ -56,6 +67,15 @@ public class CutsceneManager : MonoBehaviour
         papaChick.gameObject.SetActive(false);
         SwitchCamera(cameras[2]);
         condorManager.ChangeSpeed(condorNewSpeed);
+        sliderObject.SetActive(true);
+        StartCoroutine(ShowTutorialFor(10f));
+    }
+
+    private IEnumerator ShowTutorialFor(float t)
+    {
+        tutObject.SetActive(true);
+        yield return new WaitForSeconds(t);
+        tutObject.SetActive(false);
     }
 
     private IEnumerator SurprisePapaChickenAfter(float t)
@@ -86,4 +106,6 @@ public class CutsceneManager : MonoBehaviour
                 cameras[i].gameObject.SetActive(false);
         }
     }
+
+    #endregion
 }

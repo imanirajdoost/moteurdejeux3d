@@ -9,20 +9,23 @@ public class CharatereMovements : MonoBehaviour
     public double Angle = 0;
     public float mH;
     public float mV;
-
+    public bool est_mort = false;
     public Rigidbody rb;
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        mH = Input.GetAxis("Horizontal");
-        mV = Input.GetAxis("Vertical");
-        rb.velocity = new Vector3(-speed, mV * speed, mH * speed);
-        
+        if (!est_mort)
+        {
+            //récupère les mouvement en qwerty du joueur 
+            mH = Input.GetAxis("Horizontal");
+            mV = Input.GetAxis("Vertical");
+            //faire bouger le joueur selon les inputes (haut/bas , gauche/droite et vecteur constant vers l'avant ) 
+            rb.velocity = new Vector3(-speed, mV * speed, mH * speed);
+        }
+        else
+        {
+            //on ne bouge plus quand on est mort ^^
+            rb.velocity = new Vector3(0, 0, 0);
+        }
     }
 }
