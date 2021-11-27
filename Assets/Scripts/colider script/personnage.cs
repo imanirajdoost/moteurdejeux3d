@@ -10,6 +10,7 @@ public class personnage : MonoBehaviour
     public CharatereMovements mouv;
     private bool ISBossted = false;
     public ParticleSystem powerUppartcile;
+    public AudioSource ComboSound;
     /*
     private IEnumerator waitForDestroy(float t)
     {
@@ -17,6 +18,7 @@ public class personnage : MonoBehaviour
         Destroy(gameObject);
     }
     */
+    private int actualSpeed = 0;
     void Start()
     {
         
@@ -29,7 +31,9 @@ public class personnage : MonoBehaviour
     private IEnumerator waitForSlowdown(float t)
     {
         yield return new WaitForSeconds(t);
-        mouv.speed-=5;
+        //réinitialisation de la vitesse 
+        mouv.speed-= actualSpeed;
+        actualSpeed = 0;
         ISBossted = false;
         //powerUppartcile.Pause();
         powerUppartcile.Stop();
@@ -40,16 +44,27 @@ public class personnage : MonoBehaviour
            //détéction des colision avec le speed up 
         if (infoCollision.gameObject.CompareTag("SpeedUp"))
         {
-            //pour qu'on ne puisse pas cumuler les boostes (je pens epas que ce soit une bonne idée ) 
+            //pour qu'on ne puisse pas cumuler les boostes (je pense pas que ce soit une bonne idée ) 
             if (!ISBossted)
             {
                 if (powerUppartcile != null)
                     powerUppartcile.Play();
                 //on accélère 
+                actualSpeed += 5;
                 mouv.speed += 5;
                 ISBossted = true;
                 //on attend pour décélérer 
                 StartCoroutine(waitForSlowdown(5));
+            }
+            else
+            {
+                //if on a deja ete accelerer juste augmenter la vitesse de 2 
+                //sans oublier de le dire a actual speed pour pouvoir reset la vitesse initial 
+                actualSpeed += 2;
+                mouv.speed += 2;
+                if (actualSpeed > 10 && ComboSound!=null && !ComboSound.isPlaying)
+                    ComboSound.Play();
+
             }
         }
         /*else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))

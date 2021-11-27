@@ -19,11 +19,12 @@ public class CharatereMovements : MonoBehaviour
             //récupère les mouvement en qwerty du joueur 
             mH = Input.GetAxis("Horizontal");
             mV = Input.GetAxis("Vertical");
-            //faire bouger le joueur selon les inputes 
+            //faire bouger le joueur selon les inputes (haut/bas , gauche/droite et vecteur constant vers l'avant ) 
             rb.velocity = new Vector3(-speed, mV * speed, mH * speed);
         }
         else
         {
+            //on ne bouge plus quand on est mort ^^
             rb.velocity = new Vector3(0, 0, 0);
         }
     }

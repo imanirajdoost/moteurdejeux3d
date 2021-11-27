@@ -8,6 +8,7 @@ public class bonus : MonoBehaviour
     public CameraMouvements cam;
     public ParticleSystem shines; // particule qui se joue quand on entre dans l'anneau 
     public AudioSource audi;   // son qui se joue quand on on entre dans l'anneau 
+    public AudioSource ComboSound;
 
     private void Awake()
     {
@@ -29,8 +30,10 @@ public class bonus : MonoBehaviour
         {
             //anim.SetTrigger("Score");
             //jouer le son et les particules liée au speed up
-            shines.Play();
-            audi.Play();
+            if(shines!=null)
+                shines.Play();
+            if(audi!=null)
+                audi.Play();
             // faire bouger la camera 
             cam.zoom();
             //desactiver l'objet apres quelque secondes 
