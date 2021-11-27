@@ -11,7 +11,7 @@ public class CameraMouvements : MonoBehaviour
     public int MAXANGLE = 15; // angle maximal en - et en + de rotation de la camera par rapport a la rotation initial 
     private bool ready = false; // utiliser pour demarer le mouvement de zoom/unzoom 
     private bool dezoom = false; // utiliser pour temporiser entre le zoom et le unzoom 
-    int compteur = 0;
+    int compteur = 0; // compteur pour le zoom/unzoom 
     int maxUNZOOMDISTANCE = 50;
 
 

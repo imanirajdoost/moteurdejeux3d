@@ -18,9 +18,13 @@ public class Coin : MonoBehaviour
     private IEnumerator waitForDestroy(float t)
     {
         yield return new WaitForSeconds(t);
+        play = false;//puisque l'objet est réutiliser , il faut le réinitialiser
         gameObject.SetActive(false);
         GameManager.instance.nbcoin++;
         nc.addcoin();
+        //arreter les particules et le son (car l'objet sera réutiliser ) 
+        shines.Stop();
+        audi.Stop();
 
 
     }
@@ -30,24 +34,16 @@ public class Coin : MonoBehaviour
         {
             play = true;
             //quand on recupère la piece le sond et les particules se démarent
-
+            shines.Play();
+            audi.Play();
             gameObject.transform.localScale = new Vector3(0, 0, 0); //render l'objet invisible 
 
-            StartCoroutine(waitForDestroy(1)); // détruire l'objet apres quelque temps pour le son et les particules
+            StartCoroutine(waitForDestroy(5)); // détruire l'objet apres quelque temps pour le son et les particules
         }
     }
         // Update is called once per frame
         void Update()
     {
-            //gestion des son et des particules 
-        if (play)
-        {
-            if (!shines.isPlaying)
-                shines.Play();
-            if(!audi.isPlaying)
-                audi.Play();
-
-        }
 
     }
 }

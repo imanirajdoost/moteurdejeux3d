@@ -13,6 +13,7 @@ public class nbcoin : MonoBehaviour
     // Update is called once per frame
     public void addcoin()
     {
+        //recupérer le nombre de pièce et modifier le text 
         GetComponent<Text>().text =""+GameManager.instance.nbcoin;
     }
     void Update()
