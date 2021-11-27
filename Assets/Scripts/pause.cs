@@ -18,6 +18,7 @@ public class pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            //si quand le joueur appuit il est deja en pause alors le jeu reprend 
             if (isPaused)
             {
                 isPaused = false;
@@ -26,6 +27,7 @@ public class pause : MonoBehaviour
 
             }else
             {
+                //mise en pause du jeu 
                 isPaused = true;
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0;
@@ -34,10 +36,6 @@ public class pause : MonoBehaviour
             
     }
 
-    public void ResumeGame()
-    {
-
-    }
     public void ReturnToMain()
     {
         SceneManager.LoadScene(mainMenuScene);

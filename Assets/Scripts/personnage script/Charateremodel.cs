@@ -17,11 +17,13 @@ public class Charateremodel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //détéction des inputs 
         float mH = Input.GetAxis("Horizontal");
         float mV = Input.GetAxis("Vertical");
-        //droite 
+        
         if (!est_mort)
         {
+            //rotation a droit de la camera selon l'input
             if (mH > 0)
             {
                 if (Angle > -MAXANGLE)
@@ -30,7 +32,7 @@ public class Charateremodel : MonoBehaviour
                     Angle -= RotateSpeed;
                 }
             }
-            //gauche
+            //rotation a gauche de la camera selon l'input
             else if (mH < 0)
             {
                 if (Angle < MAXANGLE)
@@ -41,15 +43,18 @@ public class Charateremodel : MonoBehaviour
             }
             else if (Angle > 0)
             {
+                //rotation vers el haut de la camera selon l'input
                 transform.Rotate(0, 0, StabilisationSpeed * -1, Space.Self);
                 Angle -= StabilisationSpeed;
             }
             else if (Angle < 0)
             {
+                //rotation vers le bas de la camera selon l'input
                 transform.Rotate(0, 0, StabilisationSpeed, Space.Self);
                 Angle += StabilisationSpeed;
 
             }
+            // restabilisation de la camera dans sa position de base 
             if (mV > 0)
             {
                 if (VAngle > -MAXANGLE / UDS)
