@@ -8,6 +8,7 @@ public class Obstacle : MonoBehaviour
     public CharatereMovements Cmouv;
     public Charateremodel Cmodel;
     public personnage perso;
+    public ParticleSystem par; 
 
 
     private void OnEnable()
@@ -32,6 +33,7 @@ public class Obstacle : MonoBehaviour
             est_mort = true;
             Cmouv.est_mort = true;
             Cmodel.est_mort = true;
+            par.Play();
             perso.mourir(2);
             StartCoroutine(waitFordead(4f));
         }

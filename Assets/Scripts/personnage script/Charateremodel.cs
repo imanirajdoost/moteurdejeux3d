@@ -11,6 +11,7 @@ public class Charateremodel : MonoBehaviour
     public float  RotateSpeed = 0.2f;
     public float StabilisationSpeed = 0.1f;
     public int UDS = 8;
+    public ParticleSystem powerUppartcile;
     public bool est_mort = false;
 
     // Update is called once per frame

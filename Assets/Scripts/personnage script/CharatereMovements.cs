@@ -16,8 +16,10 @@ public class CharatereMovements : MonoBehaviour
     {
         if (!est_mort)
         {
+            //récupère les mouvement en qwerty du joueur 
             mH = Input.GetAxis("Horizontal");
             mV = Input.GetAxis("Vertical");
+            //faire bouger le joueur selon les inputes 
             rb.velocity = new Vector3(-speed, mV * speed, mH * speed);
         }
         else

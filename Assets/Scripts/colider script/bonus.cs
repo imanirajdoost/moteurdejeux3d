@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class bonus : MonoBehaviour
 {
-    private Animator anim;
-    private bool moov =false;
-    private int decal=0;
-    public int vitesse = 1;
+    //private Animator anim;
     public CameraMouvements cam;
     public ParticleSystem shines; // particule qui se joue quand on entre dans l'anneau 
     public AudioSource audi;   // son qui se joue quand on on entre dans l'anneau 
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
+        //initialisation de la camera du joueur 
         if (cam == null)
             cam = FindObjectOfType<CameraMouvements>(true);
     }
+    //fonction qui attend et qui désactive l'objet
     private IEnumerator waitForDestroy(float t)
     {
         yield return new WaitForSeconds(t);
@@ -28,10 +27,13 @@ public class bonus : MonoBehaviour
         //Debug.Log("HELLLLO FROM BONUSSSSSSSSSSSSSSSSSSSSSS");
         if (infoCollision.gameObject.CompareTag("Player"))
         {
-            anim.SetTrigger("Score");
+            //anim.SetTrigger("Score");
+            //jouer le son et les particules liée au speed up
             shines.Play();
             audi.Play();
+            // faire bouger la camera 
             cam.zoom();
+            //desactiver l'objet apres quelque secondes 
             StartCoroutine(waitForDestroy(1));
         }
     }
