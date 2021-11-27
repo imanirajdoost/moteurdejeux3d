@@ -9,6 +9,7 @@ public class CutsceneManager : MonoBehaviour
     public ChickenAnimationManager chick;
     public ChickenAnimationManager papaChick;
     public GameObject sliderObject;
+    public GameObject tutObject;                //Tutorial Game object
 
     private SoundManager soundManager;
 
@@ -58,6 +59,14 @@ public class CutsceneManager : MonoBehaviour
         SwitchCamera(cameras[2]);
         condorManager.ChangeSpeed(condorNewSpeed);
         sliderObject.SetActive(true);
+        StartCoroutine(ShowTutorialFor(10f));
+    }
+
+    private IEnumerator ShowTutorialFor(float t)
+    {
+        tutObject.SetActive(true);
+        yield return new WaitForSeconds(t);
+        tutObject.SetActive(false);
     }
 
     private IEnumerator SurprisePapaChickenAfter(float t)

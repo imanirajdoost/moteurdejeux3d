@@ -37,7 +37,7 @@ public class EndCutscenemManager : MonoBehaviour
     private void Update()
     {
         if (shouldShakeCam1)
-            cameraShaker1.InduceStress(0.008f);
+            cameraShaker1.InduceStress(0.009f);
         if(shouldShakeCam2)
             cameraShaker2.InduceStress(1f);
     }
@@ -51,7 +51,7 @@ public class EndCutscenemManager : MonoBehaviour
         if(soundManager != null)
             soundManager.PlayAirplaneSound();           //Play the airplane sound
         StartCoroutine(ShowFightAfter(5f));             //Show the fight scene
-        StartCoroutine(DropCondorAfter(10.5f));            //Drop the condor from the air
+        StartCoroutine(DropCondorAfter(11f));            //Drop the condor from the air
         StartCoroutine(ShowPapachickAndChildAfter(14f)); //Show papa chicken and its child on the screen for victory
         StartCoroutine(ShowWinPanelAfter(17f));         //Show the winning panel
     }

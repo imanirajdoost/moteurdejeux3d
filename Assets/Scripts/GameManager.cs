@@ -44,7 +44,13 @@ public class GameManager : MonoBehaviour
 
     private void Win()
     {
-        Debug.Log("YOU WONNNNNNNNNNN!");
+        if (isDead)
+        {
+            Debug.Log("You can't win when you are dead!");
+            return;
+        }
+            
+        Debug.Log("YOU WON!");
         if (!isWon)
         {
             isWon = true;
