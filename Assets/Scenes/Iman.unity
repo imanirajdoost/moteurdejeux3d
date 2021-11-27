@@ -23306,10 +23306,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 941256604}
     m_Modifications:
-    - target: {fileID: 407125593, guid: 64de3dbeb09851447a22108bc5c61905, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6253263824932446372, guid: 64de3dbeb09851447a22108bc5c61905, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -23357,10 +23353,6 @@ PrefabInstance:
     - target: {fileID: 6253263824932446399, guid: 64de3dbeb09851447a22108bc5c61905, type: 3}
       propertyPath: m_Name
       value: SpeedUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6659263724311516310, guid: 64de3dbeb09851447a22108bc5c61905, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64de3dbeb09851447a22108bc5c61905, type: 3}
