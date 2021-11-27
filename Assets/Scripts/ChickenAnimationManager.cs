@@ -16,6 +16,7 @@ public class ChickenAnimationManager : MonoBehaviour
     public bool eatAnim = true;
     public bool flyAnim = false;
     public ParticleSystem par;
+    public AudioSource timetoduel;
 
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class ChickenAnimationManager : MonoBehaviour
 
     public void ChangeToScare()
     {
+
         anim.SetBool("Scared", true);
     }
 
@@ -61,6 +63,7 @@ public class ChickenAnimationManager : MonoBehaviour
 
     public void FlyTowardsCondor()
     {
+
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, 270, transform.eulerAngles.z);
         StartCoroutine(StartMovingUp());
     }
