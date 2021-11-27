@@ -8,7 +8,7 @@ public class bonus : MonoBehaviour
     public CameraMouvements cam;
     public ParticleSystem shines; // particule qui se joue quand on entre dans l'anneau 
     public AudioSource audi;   // son qui se joue quand on on entre dans l'anneau 
-    public AudioSource ComboSound;
+
 
     private void Awake()
     {
