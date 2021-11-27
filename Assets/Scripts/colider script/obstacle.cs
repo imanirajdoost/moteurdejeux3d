@@ -8,7 +8,8 @@ public class Obstacle : MonoBehaviour
     public CharatereMovements Cmouv;
     public Charateremodel Cmodel;
     public personnage perso;
-    public ParticleSystem par; 
+    public ParticleSystem par;
+    private SoundManager Sm;
 
 
     private void OnEnable()
@@ -20,6 +21,8 @@ public class Obstacle : MonoBehaviour
             Cmodel = FindObjectOfType<Charateremodel>(true);
         if (perso == null)
             perso = FindObjectOfType<personnage>(true);
+        if(Sm==null)
+            Sm= FindObjectOfType<SoundManager>(true);
     }
 
     private IEnumerator waitFordead(float t)
@@ -38,6 +41,7 @@ public class Obstacle : MonoBehaviour
             Cmodel.est_mort = true;
             par.Play();
             perso.mourir(2);
+            Sm.StopMainMusic();
             StartCoroutine(waitFordead(4f));
         }
     }
