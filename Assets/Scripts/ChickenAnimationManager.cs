@@ -11,6 +11,7 @@ public class ChickenAnimationManager : MonoBehaviour
     public float upSpeed = 2f;
     public bool eatAnim = true;
     public bool flyAnim = false;
+    public ParticleSystem par;
 
     private void Awake()
     {
@@ -49,6 +50,8 @@ public class ChickenAnimationManager : MonoBehaviour
 
     public void ChangeToSurprise()
     {
+        if (par != null)
+            par.Play();
         anim.SetTrigger("Surprise");
     }
 
