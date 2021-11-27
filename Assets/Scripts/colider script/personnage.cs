@@ -11,6 +11,7 @@ public class personnage : MonoBehaviour
     private bool ISBossted = false;
     public ParticleSystem powerUppartcile;
     public AudioSource ComboSound;
+    public AudioSource DeadSound;
     /*
     private IEnumerator waitForDestroy(float t)
     {
@@ -25,6 +26,9 @@ public class personnage : MonoBehaviour
     }
     public void mourir(int s)
     {
+        if (DeadSound != null)
+            DeadSound.Play();
+
         death.SetBool("est_mort", true);
     }
     //fonction qui attend et décélère 
