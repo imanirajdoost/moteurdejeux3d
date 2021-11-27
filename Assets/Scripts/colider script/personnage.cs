@@ -31,7 +31,8 @@ public class personnage : MonoBehaviour
         yield return new WaitForSeconds(t);
         mouv.speed-=5;
         ISBossted = false;
-        powerUppartcile.Pause();
+        //powerUppartcile.Pause();
+        powerUppartcile.Stop();
 
     }
     void OnTriggerEnter(Collider infoCollision) // le type de la variable est Collision
