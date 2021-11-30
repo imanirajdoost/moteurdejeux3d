@@ -31,6 +31,10 @@ public class personnage : MonoBehaviour
 
         death.SetBool("est_mort", true);
     }
+    public bool est_vivant()
+    {
+        return !death.GetBool("est_mort");
+    }
     //fonction qui attend et décélère 
     private IEnumerator waitForSlowdown(float t)
     {

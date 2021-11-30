@@ -37,13 +37,16 @@ public class obstacle : MonoBehaviour
         {
             //est_mort = true;
             //prevenir les autres objet de la mort  du joueur et faire les conséquences 
-            Cmouv.est_mort = true;
-            Cmodel.est_mort = true;
-            if(par!=null)
-                par.Play();
-            perso.mourir(2);
-            Sm.StopMainMusic();
-            StartCoroutine(waitFordead(4f));
+            if (perso.est_vivant())
+            {
+                Cmouv.est_mort = true;
+                Cmodel.est_mort = true;
+                if (par != null)
+                    par.Play();
+                perso.mourir(2);
+                Sm.StopMainMusic();
+                StartCoroutine(waitFordead(4f));
+            }
         }
     }
 }
