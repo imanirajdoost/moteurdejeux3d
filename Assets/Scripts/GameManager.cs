@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [Header("Options")]
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
-    public bool isInMenu = true;            //Wheather or not the player is in the menu
     public bool IsPaused = false;           //Wheather or not the game is paused 
     public bool Started = false;            //Wheather or not the lvl is started
 
@@ -99,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isInMenu)
+        if (!Started)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 generator.NextMap();

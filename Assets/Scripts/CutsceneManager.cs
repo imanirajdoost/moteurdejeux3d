@@ -23,7 +23,6 @@ public class CutsceneManager : MonoBehaviour
 
     #region Private Vars
     private SoundManager soundManager;          //Sound Manager object
-    private bool isStarted = false;             //Check if game is started
     #endregion
 
     private void Awake()
@@ -33,10 +32,9 @@ public class CutsceneManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isStarted)                             //Check if game is started, if not wait for player to press space
+        if (!GameManager.instance.Started)                             //Check if game is started, if not wait for player to press space
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                isStarted = true;
                 GameManager.instance.Started = true;
                 StartCutscene();
             }
