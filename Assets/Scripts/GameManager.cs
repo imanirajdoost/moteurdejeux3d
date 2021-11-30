@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
     public bool isInMenu = true;            //Wheather or not the player is in the menu
+    public bool IsPaused = false;           //Wheather or not the game is paused 
+    public bool Started = false;            //Wheather or not the lvl is started
 
     public GameObject deathScreen;          //Screen to show when player fails
 
@@ -121,9 +123,11 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Time.timeScale = 1;
+                Started = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+
     }
 
     /// <summary>
@@ -133,6 +137,7 @@ public class GameManager : MonoBehaviour
     {
         deathScreen.SetActive(true);
         Time.timeScale = 0;
+        Started = false;
         isDead = true;
     }
 
