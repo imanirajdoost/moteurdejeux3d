@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
 
         if (generator == null)
             generator = FindObjectOfType<Generator>(true);
+        nbcoin = PlayerPrefs.GetInt("SavedCoin",0);
+        UpdateUI();
+
     }
 
     /// <summary>
@@ -66,6 +69,10 @@ public class GameManager : MonoBehaviour
         coinTextUI.text = nbcoin.ToString();
     }
 
+    void saveCoin()
+    {
+        PlayerPrefs.SetInt("SavedCoin", nbcoin);
+    }
     /// <summary>
     /// Show the ending cutscene when player wins
     /// </summary>
