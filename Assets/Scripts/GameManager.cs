@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     [Header("Options")]
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
-    public bool IsPaused = false;
+    public bool IsPaused = false;           //Wheather or not the game is paused 
+    public bool Started = false;            //Wheather or not the lvl is started
     public GameObject deathScreen;          //Screen to show when player fails
 
     public GameObject papaChicken;          //Papa chicken object
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Time.timeScale = 1;
+                Started = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
     {
         deathScreen.SetActive(true);
         Time.timeScale = 0;
+        Started = false;
         isDead = true;
     }
 

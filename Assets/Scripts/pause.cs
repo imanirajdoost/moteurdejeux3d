@@ -18,20 +18,27 @@ public class pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //si quand le joueur appuit il est deja en pause alors le jeu reprend 
-            if (!GameManager.instance.IsPaused)
+            if (GameManager.instance.Started)
             {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1;
-                GameManager.instance.IsPaused = true;
+                //si quand le joueur appuit il est deja en pause alors le jeu reprend 
+                if (!GameManager.instance.IsPaused)
+                {
+                    pauseMenu.SetActive(false);
+                    Time.timeScale = 1;
+                    GameManager.instance.IsPaused = true;
 
+                }
+                else
+                {
+                    //mise en pause du jeu 
+                    pauseMenu.SetActive(true);
+                    Time.timeScale = 0;
+                    GameManager.instance.IsPaused = false;
+                }
             }
-            else
+        else
             {
-                //mise en pause du jeu 
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0;
-                GameManager.instance.IsPaused = false;
+                Application.Quit();
             }
         }
             

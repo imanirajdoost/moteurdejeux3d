@@ -37,6 +37,7 @@ public class CutsceneManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isStarted = true;
+                GameManager.instance.Started = true;
                 StartCutscene();
             }
     }
