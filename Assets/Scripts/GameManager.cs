@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("Options")]
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
+    public bool isInMenu = true;            //Wheather or not the player is in the menu
 
     public GameObject deathScreen;          //Screen to show when player fails
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public int nbcoin = 0;                  //Number of collected coins
     private EndCutscenemManager endSceneManager;
+    private Generator generator;
 
     private void Awake()
     {
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour
 
         if (endSceneManager == null)
             endSceneManager = FindObjectOfType<EndCutscenemManager>();
+
+        if (generator == null)
+            generator = FindObjectOfType<Generator>(true);
     }
 
     /// <summary>
@@ -92,6 +97,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isInMenu)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+                generator.NextMap();
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                generator.PreviousMap();
+            return;
+        }
+
         //Calculate distance from player to condor each frame to see if player has won/lost
         //Get the normal of the distance [0,1] and update the slider accordingly
         float NormalDist = CalculateDistance();

@@ -8,9 +8,11 @@ using UnityEngine;
 /// </summary>
 public class Generator : MonoBehaviour
 {
-    public ObjectPooler environementPooler;             //Pooler of environmenet (map)
+    public ObjectPooler[] environementPooler;           //List of environmenets (maps)
+    public ObjectPooler selectedEnvironement;           //Selected environement object
     public GameObject destroyer;                        //Destroyer pointer that destroys (disables) objects that are far away
     public GameObject papaChicken;                      //Papa chicken object
+    public GameObject[] mapObjects;                     //Starting map environements that should change with environement change
 
     public float generatorOffset = 100f;                //Offset of the generator
     public float envOffset = 127f;                      //Offset of the environement object
@@ -23,11 +25,53 @@ public class Generator : MonoBehaviour
     public delegate void generatorDelegate();
     public event generatorDelegate OnGeneratorStart;    //Event that fires when generator starts
 
+    private int selectedEnvIndex = 0;                        //Currently selected environement index
+
     private void Start()
     {
         generatorMarker.transform.position = papaChicken.transform.position;    //Start the generator marker from the position of the player
         objectsToDestroy = new Queue<GameObject>();
         objectsToDestroy.Enqueue(lastObject);
+        selectedEnvironement = environementPooler[selectedEnvIndex];
+    }
+
+    public void NextMap()
+    {
+        if (environementPooler != null && environementPooler.Length > 0)
+        {
+            selectedEnvIndex++;
+            if (selectedEnvIndex >= environementPooler.Length)
+                selectedEnvIndex = 0;
+        }
+        UpdateSelectedEnvironement();
+    }
+
+    public void PreviousMap()
+    {
+        if (environementPooler != null && environementPooler.Length > 0)
+        {
+            selectedEnvIndex--;
+            if (selectedEnvIndex < 0)
+                selectedEnvIndex = environementPooler.Length - 1;
+        }
+        UpdateSelectedEnvironement();
+    }
+
+    private void UpdateSelectedEnvironement()
+    {
+        selectedEnvironement = environementPooler[selectedEnvIndex];
+
+        if (mapObjects != null && mapObjects.Length > 0)
+        {
+            for (int i = 0; i < mapObjects.Length; i++)
+            {
+                mapObjects[i].SetActive(false);
+                GameObject g = selectedEnvironement.GetPooledObject();
+                g.transform.position = mapObjects[i].transform.position;
+                mapObjects[i] = g;
+                g.SetActive(true);
+            }
+        }
     }
 
     private void Update()
@@ -42,7 +86,7 @@ public class Generator : MonoBehaviour
                 generatorMarker.transform.position.y,
                 generatorMarker.transform.position.z);
 
-            GameObject env = environementPooler.GetPooledObject();
+            GameObject env = selectedEnvironement.GetPooledObject();
             env.transform.position = new Vector3(lastObject.transform.position.x - envOffset,
                 lastObject.transform.position.y, lastObject.transform.position.z);
             objectsToDestroy.Enqueue(env);
