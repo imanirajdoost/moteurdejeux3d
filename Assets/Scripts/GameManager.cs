@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("Options")]
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
-
+    public bool IsPaused = false;
     public GameObject deathScreen;          //Screen to show when player fails
 
     public GameObject papaChicken;          //Papa chicken object
