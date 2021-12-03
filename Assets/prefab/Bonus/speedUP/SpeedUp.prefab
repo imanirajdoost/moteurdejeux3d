@@ -19214,7 +19214,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   shines: {fileID: 1704795988}
   audi: {fileID: 975092762}
-  ComboSound: {fileID: 0}
 --- !u!65 &1085192414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19226,8 +19225,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.025, y: 0.002, z: 0.025}
-  m_Center: {x: 0, y: 0.01, z: 0}
+  m_Size: {x: 0.03, y: 0.002, z: 0.03}
+  m_Center: {x: 0, y: 0.003, z: 0}
 --- !u!95 &1129030794
 Animator:
   serializedVersion: 3

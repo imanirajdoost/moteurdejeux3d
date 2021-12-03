@@ -17,6 +17,15 @@ public class MoveCondor : MonoBehaviour
     public float upSpeed = 4f;
 
     public GameObject chickChild;
+    public ParticleSystem hitEffect;
+    private SoundManager soundManager;
+    public Animator hitAnim;
+    public Animator sliderAnim;
+
+    private void Awake()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
 
     private void Update()
     {
@@ -34,6 +43,17 @@ public class MoveCondor : MonoBehaviour
     public void ChangeSpeed(float newSpeed)
     {
         forwardSpeed = newSpeed;
+    }
+
+    public void SlowDown()
+    {
+        forwardSpeed -= 0.2f;
+        hitEffect.Play();
+        soundManager.PlayHitSound();
+        if (hitAnim != null)
+            hitAnim.SetTrigger("Hit");
+        if (sliderAnim != null)
+            sliderAnim.SetTrigger("Hit");
     }
 
     public void PickupChick(ChickenAnimationManager chick)

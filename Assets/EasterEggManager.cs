@@ -18,7 +18,8 @@ public class EasterEggManager : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
-                hasClicked = true;
+                if(hit.transform.CompareTag("EasterEgg"))
+                    hasClicked = true;
             }
         }
 

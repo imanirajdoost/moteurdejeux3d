@@ -11,6 +11,8 @@ using UnityEngine.UI;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public bool isDebug;                    //Used for some scripts to unlock supervisor mode and to return all unlocked things
+
     public static GameManager instance;     //Singletone object
 
     [Header("Options")]
@@ -35,7 +37,10 @@ public class GameManager : MonoBehaviour
 
     public int nbcoin = 0;                  //Number of collected coins
     private EndCutscenemManager endSceneManager;
+    private CutsceneManager startCutsceneManager;
     private Generator generator;
+
+    private static readonly string SAVED_COIN = "SavedCoin";
 
     private void Awake()
     {
@@ -47,9 +52,12 @@ public class GameManager : MonoBehaviour
         if (endSceneManager == null)
             endSceneManager = FindObjectOfType<EndCutscenemManager>();
 
+        if (startCutsceneManager == null)
+            startCutsceneManager = FindObjectOfType<CutsceneManager>();
+
         if (generator == null)
             generator = FindObjectOfType<Generator>(true);
-        nbcoin = PlayerPrefs.GetInt("SavedCoin",0);
+        nbcoin = PlayerPrefs.GetInt(SAVED_COIN, 0);
         UpdateUI();
 
     }
@@ -70,8 +78,14 @@ public class GameManager : MonoBehaviour
 
     void saveCoin()
     {
-        PlayerPrefs.SetInt("SavedCoin", nbcoin);
+        PlayerPrefs.SetInt(SAVED_COIN, nbcoin);
     }
+
+    public int GetCurrentCoinCount()
+    {
+        return PlayerPrefs.GetInt(SAVED_COIN, 0);
+    }
+
     /// <summary>
     /// Show the ending cutscene when player wins
     /// </summary>
@@ -105,13 +119,21 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!Started)
+        if (!Started && !isDead)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 generator.NextMap();
             if (Input.GetKeyDown(KeyCode.LeftArrow))
                 generator.PreviousMap();
-            return;
+            if (Input.GetKeyDown(KeyCode.Space))        //Start game
+            {
+                if (generator.IsCurrentLevelUnlocked())
+                {
+                    Started = true;
+                    startCutsceneManager.StartCutscene();
+                }
+            }
+                return;
         }
 
         //Calculate distance from player to condor each frame to see if player has won/lost
@@ -141,6 +163,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        if (isDebug)
+            return;
         deathScreen.SetActive(true);
         Time.timeScale = 0;
         Started = false;
