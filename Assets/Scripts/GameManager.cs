@@ -106,17 +106,12 @@ public class GameManager : MonoBehaviour
             //papaChicken.GetComponent<Animator>().SetBool("CondorColide", true);
             ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
             endSceneManager.StartEndCutscene();
-            StartCoroutine(waitForUnactive(5));
+            papaChicken.SetActive(false);
+            condorObject.SetActive(false);
             //Started = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-    }
-    private IEnumerator waitForUnactive(float t)
-    {
-        yield return new WaitForSeconds(t);
-        papaChicken.SetActive(false);
-        condorObject.SetActive(false);
     }
 
     private IEnumerator waitAnimationForRestart(float t)
