@@ -22,6 +22,11 @@ public class MoveCondor : MonoBehaviour
     public Animator hitAnim;
     public Animator sliderAnim;
 
+    public Vector3 getCoord()
+    {
+        return transform.position;
+    }
+
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();

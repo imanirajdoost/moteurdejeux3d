@@ -12,12 +12,11 @@ public class CharatereMovements : MonoBehaviour
     public bool est_mort = false;
     public bool Toucher_Condor = false;
     public Rigidbody rb;
-    private MoveCondor Condor;
+    private bool firsttime = true;
 
     private void Awake()
     {
-        if (Condor == null)
-            FindObjectOfType<CharatereMovements>(true);
+
     }
 
     void Update()
