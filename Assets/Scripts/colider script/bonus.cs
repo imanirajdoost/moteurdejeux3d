@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Manages SpeedUP
+/// By Ahmad JREDA
+/// </summary>
 public class bonus : MonoBehaviour
 {
     //private Animator anim;

@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Manages chicken mouvement with camera 
+/// By Ahmad JREDA
+/// </summary>
 public class CharatereMovements : MonoBehaviour
 {
     public float speed = 12f;
@@ -33,12 +36,7 @@ public class CharatereMovements : MonoBehaviour
         else
         {
             //on ne bouge plus quand on est mort ^^
-            if (Toucher_Condor)
-            {
-                rb.velocity = new Vector3(Time.deltaTime * speed * -100, 0, 0);
-            }
-            else
-                rb.velocity = new Vector3(0, 0, 0);
+            rb.velocity = new Vector3(0, 0, 0);
         }
     }
 }

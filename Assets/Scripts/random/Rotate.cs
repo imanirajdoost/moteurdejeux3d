@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// rotate an object 
+/// By Ahmad JREDA
+/// </summary>
 public class Rotate : MonoBehaviour
 {
     // Start is called before the first frame update

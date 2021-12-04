@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Manages obstacle detection , partcle an animation
+/// By Ahmad JREDA
+/// </summary>
 public class obstacle : MonoBehaviour
 {
     //private bool est_mort = false;

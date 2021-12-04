@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Manages different states of the game
 /// This is a singletone class
-/// Written by: Iman IRAJ DOOST
+/// Written by: Iman IRAJ DOOST and Ahmad JREDA
 /// </summary>
 public class GameManager : MonoBehaviour
 {
