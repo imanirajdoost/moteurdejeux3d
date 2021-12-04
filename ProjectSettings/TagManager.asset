@@ -11,6 +11,7 @@ TagManager:
   - FxTemporaire
   - EasterEgg
   - Bomb
+  - Condor
   layers:
   - Default
   - TransparentFX

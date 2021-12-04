@@ -418,13 +418,14 @@ GameObject:
   - component: {fileID: 2288547713428363095}
   - component: {fileID: 2288547713437464759}
   - component: {fileID: 2288547713038024399}
+  - component: {fileID: 209641873}
   m_Layer: 0
   m_Name: Condor
-  m_TagString: Untagged
+  m_TagString: Condor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2288547713428363095
 Transform:
   m_ObjectHideFlags: 0
@@ -432,7 +433,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2288547713428065143}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 66.56, y: 3.66, z: -15.22}
   m_LocalScale: {x: 0.50000006, y: 0.5, z: 0.50000006}
   m_Children:
@@ -482,6 +483,21 @@ MonoBehaviour:
   upSpeed: 4
   chickChild: {fileID: 2288547713478263447}
   hitEffect: {fileID: 2444575229113204894}
+  hitAnim: {fileID: 0}
+  sliderAnim: {fileID: 0}
+--- !u!65 &209641873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288547713428065143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 100, y: 50, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2288547713428065145
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,14 +981,14 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9500000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
---- !u!4 &2288547713477779127 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
-  m_PrefabInstance: {fileID: 2288547713478165559}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2288547713478263447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
+  m_PrefabInstance: {fileID: 2288547713478165559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2288547713477779127 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 555450ad5876a1b4a87f02765f03e159, type: 3}
   m_PrefabInstance: {fileID: 2288547713478165559}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2535063993249343336

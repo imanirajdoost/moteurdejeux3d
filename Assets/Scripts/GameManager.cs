@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Show the ending cutscene when player wins
     /// </summary>
-    private void Win()
+    public void Win()
     {
         if (isDead)
         {
@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
         {
             saveCoin();
             isWon = true;
+            sliderDistance.gameObject.SetActive(false);
             StartCoroutine(waitAnimationForRestart(15));
             //papaChicken.GetComponent<Animator>().SetBool("CondorColide", true);
             ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
@@ -110,7 +111,6 @@ public class GameManager : MonoBehaviour
             //Started = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
     }
     private IEnumerator waitForUnactive(float t)
     {
@@ -168,8 +168,8 @@ public class GameManager : MonoBehaviour
         float NormalDist = CalculateDistance();
         UpdateSlider(NormalDist);
         float dist = Vector2.Distance(papaChicken.transform.position,condorObject.transform.position);
-        if (dist < winDist)
-            Win();
+        //if (dist < winDist)
+            //Win();
         if (dist > maxDistance)
             Lose();
 

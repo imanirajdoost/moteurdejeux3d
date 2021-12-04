@@ -22,9 +22,12 @@ public class MoveCondor : MonoBehaviour
     public Animator hitAnim;
     public Animator sliderAnim;
 
+    private BoxCollider col;
+
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();
+        col = GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -43,6 +46,13 @@ public class MoveCondor : MonoBehaviour
     public void ChangeSpeed(float newSpeed)
     {
         forwardSpeed = newSpeed;
+        StartCoroutine(EnableColliderAfter(5f));
+    }
+
+    private IEnumerator EnableColliderAfter(float t)
+    {
+        yield return new WaitForSeconds(t);
+        col.enabled = true;
     }
 
     public void SlowDown()

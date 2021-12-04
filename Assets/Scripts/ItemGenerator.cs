@@ -8,7 +8,11 @@ using UnityEngine;
 public class ItemGenerator : MonoBehaviour
 {
     [Header("Items")]
-    public ObjectPooler[] objectPoolers;    //Object poolers
+    public ObjectPooler[] objectPoolersEasy;    //Object poolers for easy levels
+    public ObjectPooler[] objectPoolersMedium;  //Object poolers for medium levels
+    public ObjectPooler[] objectPoolersHard;    //Object poolers for hard levels
+
+    private ObjectPooler[] selectedPooler;      //Object pooler selected based on level difficulty
 
     [Header("Boundary")]
     public float minX;          //Boundary of the spawned objects
@@ -23,9 +27,38 @@ public class ItemGenerator : MonoBehaviour
 
     public Generator generatorManager;
 
+    private int difficultyIndex = 0;    //difficulty index based on the level index
+
     private void Awake()
     {
         FindGeneratorManager();
+    }
+
+    private void UpdateDifficulty()
+    {
+        //Update pooler based on the selected map (change difficulty)
+        selectedPooler = new ObjectPooler[objectPoolersEasy.Length];
+        switch (generatorManager.GetSelectedMapIndex())
+        {
+            case 0:
+            case 1:
+                for (int i = 0; i < selectedPooler.Length; i++)
+                    selectedPooler[i] = objectPoolersEasy[i];
+                break;
+            case 2:
+                for (int i = 0; i < selectedPooler.Length; i++)
+                    selectedPooler[i] = objectPoolersMedium[i];
+                break;
+            case 3:
+            case 4:
+                for (int i = 0; i < selectedPooler.Length; i++)
+                    selectedPooler[i] = objectPoolersHard[i];
+                break;
+            default:
+                for (int i = 0; i < selectedPooler.Length; i++)
+                    selectedPooler[i] = objectPoolersEasy[i];
+                break;
+        }
     }
 
     private void FindGeneratorManager()
@@ -48,6 +81,7 @@ public class ItemGenerator : MonoBehaviour
 
     private void GeneratorManager_OnGeneratorStart()
     {
+        UpdateDifficulty();
         GenerateStuff();
     }
 
@@ -58,18 +92,23 @@ public class ItemGenerator : MonoBehaviour
         {
             //Get one of the poolers randomly
             //A speed up ring or an obstacle, etc.
-            int randomIndex = Random.Range(0, objectPoolers.Length);
+            int randomIndex = Random.Range(0, selectedPooler.Length);
             //Debug.Log("Random index: " + randomIndex);
-            GameObject objectToSpawn = objectPoolers[randomIndex].GetPooledObject();
+            if (selectedPooler.Length > 0 && randomIndex < selectedPooler.Length)
+            {
 
-            //Change position randomly
-            objectToSpawn.transform.position = new Vector3(generatorManager.transform.position.x - space,
-                Random.Range(minY, maxY),
-                Random.Range(minX, maxX));
 
-            objectToSpawn.SetActive(true);
+                GameObject objectToSpawn = selectedPooler[randomIndex].GetPooledObject();
 
-            space += itemSpace;
+                //Change position randomly
+                objectToSpawn.transform.position = new Vector3(generatorManager.transform.position.x - space,
+                    Random.Range(minY, maxY),
+                    Random.Range(minX, maxX));
+
+                objectToSpawn.SetActive(true);
+
+                space += itemSpace;
+            }
         }
     }
 

@@ -81,6 +81,10 @@ public class personnage : MonoBehaviour
 
             }
         }
+        else if (infoCollision.gameObject.CompareTag("Condor"))
+        {
+            GameManager.instance.Win();
+        }
         /*else if (nbVies>0 && infoCollision.gameObject.CompareTag("obstacle"))
         {
             //infoCollision.gameObject.SetActive(false);
