@@ -26,7 +26,11 @@ public class Generator : MonoBehaviour
     public delegate void generatorDelegate();
     public event generatorDelegate OnGeneratorStart;    //Event that fires when generator starts
 
+<<<<<<< HEAD
     public static int selectedEnvIndex = 0;                   //Currently selected environement index
+=======
+    private int selectedEnvIndex = 0;                   //Currently selected environement index
+>>>>>>> 1048c7c5395fbd75e591693ebe0f6a57585e17aa
     private SoundManager soundManager;
     private LevelsManager levelManager;                 //Manages locked/unlocked levels
 

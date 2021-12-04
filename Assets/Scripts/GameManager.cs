@@ -84,7 +84,11 @@ public class GameManager : MonoBehaviour
 
     public int GetCurrentCoinCount()
     {
+<<<<<<< HEAD
         return GameManager.instance.nbcoin;
+=======
+        return PlayerPrefs.GetInt(SAVED_COIN, 0);
+>>>>>>> 1048c7c5395fbd75e591693ebe0f6a57585e17aa
     }
 
     /// <summary>
@@ -151,6 +155,7 @@ public class GameManager : MonoBehaviour
                 }
             }
                 return;
+<<<<<<< HEAD
         }
         if (CanRestart)
         {
@@ -160,6 +165,8 @@ public class GameManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Escape))
                 Application.Quit();
+=======
+>>>>>>> 1048c7c5395fbd75e591693ebe0f6a57585e17aa
         }
 
         //Calculate distance from player to condor each frame to see if player has won/lost
@@ -190,9 +197,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+<<<<<<< HEAD
         /*
         if (isDebug)
             return;*/
+=======
+        if (isDebug)
+            return;
+>>>>>>> 1048c7c5395fbd75e591693ebe0f6a57585e17aa
         deathScreen.SetActive(true);
         Time.timeScale = 0;
         Started = false;
