@@ -15,6 +15,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource airplaneSound;
     public AudioSource punchSound;
     public AudioSource victorySound;
+    public AudioSource cameraSound;
+    public AudioSource hitSound;
+    public AudioSource bombSound;
 
     public void SetIsMute()
     {
@@ -68,5 +71,20 @@ public class SoundManager : MonoBehaviour
     public void PlayVictorySound()
     {
         PlaySound(victorySound);
+    }
+
+    public void PlayCameraSound()
+    {
+        PlaySound(cameraSound);
+    }
+
+    public void PlayHitSound()
+    {
+        PlaySound(hitSound);
+    }
+
+    public void PlayBombSound()
+    {
+        PlaySound(bombSound);
     }
 }

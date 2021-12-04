@@ -12,6 +12,7 @@ public class personnage : MonoBehaviour
     public ParticleSystem powerUppartcile;
     public AudioSource ComboSound;
     public AudioSource DeadSound;
+    private MoveCondor Condor;
     /*
     private IEnumerator waitForDestroy(float t)
     {
@@ -20,6 +21,11 @@ public class personnage : MonoBehaviour
     }
     */
     private int actualSpeed = 0;
+    private void Awake()
+    {
+        if(Condor==null)
+            FindObjectOfType<CharatereMovements>(true);
+    }
     void Start()
     {
         

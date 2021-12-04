@@ -30,16 +30,6 @@ public class CutsceneManager : MonoBehaviour
         soundManager = FindObjectOfType<SoundManager>();
     }
 
-    private void Update()
-    {
-        if (!GameManager.instance.Started)                             //Check if game is started, if not wait for player to press space
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                GameManager.instance.Started = true;
-                StartCutscene();
-            }
-    }
-
     #region Methods
 
     

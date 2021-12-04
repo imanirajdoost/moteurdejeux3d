@@ -59,7 +59,7 @@ public class ItemGenerator : MonoBehaviour
             //Get one of the poolers randomly
             //A speed up ring or an obstacle, etc.
             int randomIndex = Random.Range(0, objectPoolers.Length);
-            Debug.Log("Random index: " + randomIndex);
+            //Debug.Log("Random index: " + randomIndex);
             GameObject objectToSpawn = objectPoolers[randomIndex].GetPooledObject();
 
             //Change position randomly

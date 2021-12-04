@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -25,9 +26,20 @@ public class Generator : MonoBehaviour
     public delegate void generatorDelegate();
     public event generatorDelegate OnGeneratorStart;    //Event that fires when generator starts
 
-    private int selectedEnvIndex = 0;                        //Currently selected environement index
+    public static int selectedEnvIndex = 0;                   //Currently selected environement index
+    private SoundManager soundManager;
+    private LevelsManager levelManager;                 //Manages locked/unlocked levels
 
-    private void Start()
+    public GameObject lockedLevelPanel;                 //Shown when a level is locked
+    public TextMeshProUGUI lockedLevelText;             //Text shown on locked level
+
+    private void Awake()
+    {
+        GetSoundManager();
+        GetLevelManager();
+    }
+
+    private void OnEnable()
     {
         generatorMarker.transform.position = papaChicken.transform.position;    //Start the generator marker from the position of the player
         objectsToDestroy = new Queue<GameObject>();
@@ -35,6 +47,21 @@ public class Generator : MonoBehaviour
         selectedEnvironement = environementPooler[selectedEnvIndex];
     }
 
+    private void GetLevelManager()
+    {
+        if (levelManager == null)
+            levelManager = FindObjectOfType<LevelsManager>(true);
+    }
+
+    private void GetSoundManager()
+    {
+        if(soundManager == null)
+            soundManager = FindObjectOfType<SoundManager>();
+    }
+
+    /// <summary>
+    /// Shows next map
+    /// </summary>
     public void NextMap()
     {
         if (environementPooler != null && environementPooler.Length > 0)
@@ -42,10 +69,17 @@ public class Generator : MonoBehaviour
             selectedEnvIndex++;
             if (selectedEnvIndex >= environementPooler.Length)
                 selectedEnvIndex = 0;
+
         }
         UpdateSelectedEnvironement();
+        GetSoundManager();
+        if (soundManager != null)
+            soundManager.PlayCameraSound();
     }
 
+    /// <summary>
+    /// Shows previous map
+    /// </summary>
     public void PreviousMap()
     {
         if (environementPooler != null && environementPooler.Length > 0)
@@ -55,8 +89,14 @@ public class Generator : MonoBehaviour
                 selectedEnvIndex = environementPooler.Length - 1;
         }
         UpdateSelectedEnvironement();
+        GetSoundManager();
+        if (soundManager != null)
+            soundManager.PlayCameraSound();
     }
 
+    /// <summary>
+    /// Updates the selected map on the UI
+    /// </summary>
     private void UpdateSelectedEnvironement()
     {
         selectedEnvironement = environementPooler[selectedEnvIndex];
@@ -72,6 +112,31 @@ public class Generator : MonoBehaviour
                 g.SetActive(true);
             }
         }
+        GetLevelManager();
+        if(levelManager != null)
+        {
+            if (IsCurrentLevelUnlocked())
+            {
+                lockedLevelPanel.SetActive(false);
+            }
+            else
+            {
+                lockedLevelText.text = "You need " + levelManager.GetCoinsNeededForLevel(selectedEnvIndex) + " Coins to Unlock this Level";
+                lockedLevelPanel.SetActive(true);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if currently selected level is unlocked
+    /// </summary>
+    /// <returns>true if level is unlocked</returns>
+    public bool IsCurrentLevelUnlocked()
+    {
+        GetLevelManager();
+        if (levelManager.IsLevelUnlocked(selectedEnvIndex))
+            return true;
+        return false;
     }
 
     private void Update()

@@ -329,13 +329,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5b021ee8a89cd4fa6acb4e0927076b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environementPooler: {fileID: 0}
+  environementPooler:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectedEnvironement: {fileID: 0}
   destroyer: {fileID: 2094578992}
   papaChicken: {fileID: 366865220027818984}
+  mapObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   generatorOffset: 100
   envOffset: 127
   generatorMarker: {fileID: 0}
   lastObject: {fileID: 0}
+  lockedLevelPanel: {fileID: 0}
+  lockedLevelText: {fileID: 0}
 --- !u!1 &1966429728
 GameObject:
   m_ObjectHideFlags: 0
@@ -5213,8 +5224,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 1.68, z: 1.86}
-  m_Center: {x: 0.0017941528, y: 0.56907344, z: 1.289666}
+  m_Size: {x: 1.42, y: 1.5, z: 1.14}
+  m_Center: {x: 0.0017941528, y: 0.56907344, z: 0.9}
 --- !u!1 &366865219662843796
 GameObject:
   m_ObjectHideFlags: 0
@@ -5231,7 +5242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &366865219662843882
 Transform:
   m_ObjectHideFlags: 0
@@ -5395,9 +5406,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Angle: 0
   VAngle: 0
-  MAXANGLE: 20
-  RotateSpeed: 0.03
-  StabilisationSpeed: 0.025
+  MAXANGLE: 10
+  RotateSpeed: 0.3
+  StabilisationSpeed: 0.1
   UDS: 8
   powerUppartcile: {fileID: 198163637687045750}
   est_mort: 0
@@ -5412,7 +5423,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 0.72, y: 1.1, z: 1.17}
   m_Center: {x: 0.0017941528, y: 0.56907344, z: 1}
 --- !u!114 &2011247532
 MonoBehaviour:

@@ -11,6 +11,8 @@ using UnityEngine.UI;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public bool isDebug;                    //Used for some scripts to unlock supervisor mode and to return all unlocked things
+
     public static GameManager instance;     //Singletone object
 
     [Header("Options")]
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool isWon = false;              //Wheather or not the player has won
     public bool IsPaused = false;           //Wheather or not the game is paused 
     public bool Started = false;            //Wheather or not the lvl is started
+    public bool CanRestart = false;
 
     public GameObject deathScreen;          //Screen to show when player fails
 
@@ -35,7 +38,10 @@ public class GameManager : MonoBehaviour
 
     public int nbcoin = 0;                  //Number of collected coins
     private EndCutscenemManager endSceneManager;
+    private CutsceneManager startCutsceneManager;
     private Generator generator;
+
+    private static readonly string SAVED_COIN = "SavedCoin";
 
     private void Awake()
     {
@@ -47,9 +53,12 @@ public class GameManager : MonoBehaviour
         if (endSceneManager == null)
             endSceneManager = FindObjectOfType<EndCutscenemManager>();
 
+        if (startCutsceneManager == null)
+            startCutsceneManager = FindObjectOfType<CutsceneManager>();
+
         if (generator == null)
             generator = FindObjectOfType<Generator>(true);
-        nbcoin = PlayerPrefs.GetInt("SavedCoin",0);
+        nbcoin = PlayerPrefs.GetInt(SAVED_COIN, 0);
         UpdateUI();
 
     }
@@ -70,8 +79,14 @@ public class GameManager : MonoBehaviour
 
     void saveCoin()
     {
-        PlayerPrefs.SetInt("SavedCoin", nbcoin);
+        PlayerPrefs.SetInt(SAVED_COIN, nbcoin);
     }
+
+    public int GetCurrentCoinCount()
+    {
+        return GameManager.instance.nbcoin;
+    }
+
     /// <summary>
     /// Show the ending cutscene when player wins
     /// </summary>
@@ -86,12 +101,28 @@ public class GameManager : MonoBehaviour
         Debug.Log("YOU WON!");
         if (!isWon)
         {
+            saveCoin();
             isWon = true;
+            StartCoroutine(waitAnimationForRestart(15));
+            papaChicken.GetComponent<Animator>().SetBool("CondorColide", true);
             endSceneManager.StartEndCutscene();
-            papaChicken.SetActive(false);
-            condorObject.SetActive(false);
+            StartCoroutine(waitForUnactive(5));
+            //Started = false;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+    }
+    private IEnumerator waitForUnactive(float t)
+    {
+        yield return new WaitForSeconds(t);
+        papaChicken.SetActive(false);
+        condorObject.SetActive(false);
+    }
+
+    private IEnumerator waitAnimationForRestart(float t)
+    {
+        yield return new WaitForSeconds(t);
+        CanRestart = true;
     }
 
     /// <summary>
@@ -105,13 +136,30 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!Started)
+        if (!Started && !isDead)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 generator.NextMap();
             if (Input.GetKeyDown(KeyCode.LeftArrow))
                 generator.PreviousMap();
-            return;
+            if (Input.GetKeyDown(KeyCode.Space))        //Start game
+            {
+                if (generator.IsCurrentLevelUnlocked())
+                {
+                    Started = true;
+                    startCutsceneManager.StartCutscene();
+                }
+            }
+                return;
+        }
+        if (CanRestart)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))        //Start game
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
         }
 
         //Calculate distance from player to condor each frame to see if player has won/lost
@@ -134,6 +182,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+
     }
 
     /// <summary>
@@ -141,6 +190,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        /*
+        if (isDebug)
+            return;*/
         deathScreen.SetActive(true);
         Time.timeScale = 0;
         Started = false;
