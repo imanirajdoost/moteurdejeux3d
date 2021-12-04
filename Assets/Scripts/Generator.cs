@@ -59,6 +59,11 @@ public class Generator : MonoBehaviour
             soundManager = FindObjectOfType<SoundManager>();
     }
 
+    public int GetSelectedMapIndex()
+    {
+        return selectedEnvIndex;
+    }
+
     /// <summary>
     /// Shows next map
     /// </summary>
@@ -124,6 +129,8 @@ public class Generator : MonoBehaviour
                 lockedLevelPanel.SetActive(true);
             }
         }
+
+        ScoreManager.instance.UpdateHighScore(selectedEnvIndex);
     }
 
     /// <summary>

@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 19900018}
   - component: {fileID: 11400018}
   m_Layer: 0
-  m_Name: CFX_MagicPoof
+  m_Name: MagicPoof
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

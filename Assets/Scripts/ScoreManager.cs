@@ -21,6 +21,7 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
 
         ResetScore();
+        UpdateHighScore(0);
     }
 
     public void ResetScore()
@@ -34,7 +35,7 @@ public class ScoreManager : MonoBehaviour
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         scoreText.text = "Score: " + tempScore;
     }
@@ -44,5 +45,11 @@ public class ScoreManager : MonoBehaviour
         if (tempScore > PlayerPrefs.GetInt(PREF_LEVEL + sceneIndex, 0))
             PlayerPrefs.SetInt(PREF_LEVEL+sceneIndex,tempScore);
         ResetScore();
+        UpdateHighScore(sceneIndex);
+    }
+
+    public void UpdateHighScore(int sceneIndex)
+    {
+        scoreText.text = "HighScore: " + PlayerPrefs.GetInt(PREF_LEVEL + sceneIndex, 0);
     }
 }

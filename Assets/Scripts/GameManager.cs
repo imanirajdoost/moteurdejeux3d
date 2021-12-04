@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
             generator = FindObjectOfType<Generator>(true);
         nbcoin = PlayerPrefs.GetInt(SAVED_COIN, 0);
         UpdateUI();
-
     }
 
     /// <summary>
@@ -101,6 +100,7 @@ public class GameManager : MonoBehaviour
         if (!isWon)
         {
             isWon = true;
+            ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
             endSceneManager.StartEndCutscene();
             papaChicken.SetActive(false);
             condorObject.SetActive(false);
@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
                 if (generator.IsCurrentLevelUnlocked())
                 {
                     Started = true;
+                    ScoreManager.instance.UpdateUI();
                     startCutsceneManager.StartCutscene();
                 }
             }
@@ -165,6 +166,7 @@ public class GameManager : MonoBehaviour
     {
         if (isDebug)
             return;
+        ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
         deathScreen.SetActive(true);
         Time.timeScale = 0;
         Started = false;
