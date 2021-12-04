@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
             generator = FindObjectOfType<Generator>(true);
         nbcoin = PlayerPrefs.GetInt(SAVED_COIN, 0);
         UpdateUI();
-
     }
 
     /// <summary>
@@ -104,7 +103,8 @@ public class GameManager : MonoBehaviour
             saveCoin();
             isWon = true;
             StartCoroutine(waitAnimationForRestart(15));
-            papaChicken.GetComponent<Animator>().SetBool("CondorColide", true);
+            //papaChicken.GetComponent<Animator>().SetBool("CondorColide", true);
+            ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
             endSceneManager.StartEndCutscene();
             StartCoroutine(waitForUnactive(5));
             //Started = false;
@@ -147,6 +147,7 @@ public class GameManager : MonoBehaviour
                 if (generator.IsCurrentLevelUnlocked())
                 {
                     Started = true;
+                    ScoreManager.instance.UpdateUI();
                     startCutsceneManager.StartCutscene();
                 }
             }
@@ -190,9 +191,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        /*
         if (isDebug)
-            return;*/
+            return;
+        ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
         deathScreen.SetActive(true);
         Time.timeScale = 0;
         Started = false;

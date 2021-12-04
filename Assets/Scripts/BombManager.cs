@@ -9,7 +9,7 @@ using UnityEngine;
 public class BombManager : MonoBehaviour
 {
     public ParticleSystem explosion;        //Bomb explostion particle effect
-    public GameObject objectRenderer;       //Bomb main mesh renderer
+    public SkinnedMeshRenderer objectRenderer;       //Bomb main mesh renderer
     public LayerMask clickLayerMask;
 
     private MoveCondor condorManager;
@@ -58,12 +58,18 @@ public class BombManager : MonoBehaviour
                 {
                     if (hit[i].transform.CompareTag("Bomb") && hit[i].transform.gameObject == this.gameObject)
                     {
+                        GetScore();
                         Explode();
                         break;
                     }
                 }
             }
         }
+    }
+
+    private void GetScore()
+    {
+        ScoreManager.instance.AddScore(10);
     }
 
     private void KillPlayer()
@@ -94,11 +100,11 @@ public class BombManager : MonoBehaviour
 
     private void DisableRenderer()
     {
-        objectRenderer.SetActive(false);
+        objectRenderer.enabled = false;
     }
 
     private void EnableRenderer()
     {
-        objectRenderer.SetActive(true);
+        objectRenderer.enabled = true;
     }
 }

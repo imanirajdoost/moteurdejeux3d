@@ -18,11 +18,13 @@ public class LevelsManager : MonoBehaviour
     /// <returns>returns true if player has enough coins for the given level</returns>
     public bool IsLevelUnlocked(int levelIndex)
     {
+        if (GameManager.instance.isDebug)
+            return true;
+
         if (GameManager.instance.nbcoin >= Generator.selectedEnvIndex * 10)
             return true;
         else
             return false;
-            
     }
 
     /// <summary>

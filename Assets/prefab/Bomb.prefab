@@ -35335,11 +35335,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2879990180404791068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 581c7ea4f2ce7314a9cf39f70279d53c, type: 3}
+  m_Script: {fileID: 11500000, guid: 56c881e11e21ccd4b8c4afb20e56b67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 8671346133940146440}
-  objectRenderer: {fileID: 2079830843187191937}
+  objectRenderer: {fileID: 2107299880587598995}
   clickLayerMask:
     serializedVersion: 2
     m_Bits: 64
