@@ -50,6 +50,13 @@ public class EndCutscenemManager : MonoBehaviour
     private IEnumerator StartAnimationAfter(float t)
     {
         yield return new WaitForSeconds(t);
+
+    }
+
+    public void StartEndCutscene()
+    {
+        if (soundManager != null)
+            soundManager.StopMainMusic();               //Stop the main music
         shouldShakeCam1 = true;                         //Start shaking the camera
         SwitchCamera(cameras[1]);                       //Disable main camera and zoom into the face of papa chicken!
         if (soundManager != null)
@@ -60,16 +67,6 @@ public class EndCutscenemManager : MonoBehaviour
 
         StartCoroutine(ShowPapachickAndChildAfter(14f)); //Show papa chicken and its child on the screen for victory
         StartCoroutine(ShowWinPanelAfter(17f));
-    }
-
-    public void StartEndCutscene()
-    {
-        if (soundManager != null)
-            soundManager.StopMainMusic();               //Stop the main music
-        //TODO transition 
-        Cmouv.Toucher_Condor = true; // pour ne plus pouvoir bouger
-        SwitchCamera(cameras[4]);
-        StartCoroutine(StartAnimationAfter(1.5f));
         //Show the winning panel
     }
 
