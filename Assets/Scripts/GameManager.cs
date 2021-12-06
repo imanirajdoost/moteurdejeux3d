@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Manages different states of the game
 /// This is a singletone class
-/// Written by: Iman IRAJ DOOST
+/// Written by: Iman IRAJ DOOST and Ahmad JREDA
 /// </summary>
 public class GameManager : MonoBehaviour
 {
@@ -107,16 +107,11 @@ public class GameManager : MonoBehaviour
             //papaChicken.GetComponent<Animator>().SetBool("CondorColide", true);
             ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
             endSceneManager.StartEndCutscene();
-            StartCoroutine(waitForUnactive(5));
+            papaChicken.SetActive(false);
+            condorObject.SetActive(false);
             //Started = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-    }
-    private IEnumerator waitForUnactive(float t)
-    {
-        yield return new WaitForSeconds(t);
-        papaChicken.SetActive(false);
-        condorObject.SetActive(false);
     }
 
     private IEnumerator waitAnimationForRestart(float t)
@@ -151,6 +146,7 @@ public class GameManager : MonoBehaviour
                     startCutsceneManager.StartCutscene();
                 }
             }
+     
                 return;
         }
         if (CanRestart)

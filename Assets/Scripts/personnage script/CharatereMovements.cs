@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Manages chicken mouvement with camera 
+/// By Ahmad JREDA
+/// </summary>
 public class CharatereMovements : MonoBehaviour
 {
     public float speed = 12f;

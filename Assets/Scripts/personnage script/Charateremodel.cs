@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Manages chicken rotation during flying 
+/// By Ahmad JREDA
+/// </summary>
 public class Charateremodel : MonoBehaviour
 {
     // Start is called before the first frame update

@@ -11,13 +11,21 @@ public class BombManager : MonoBehaviour
     public ParticleSystem explosion;        //Bomb explostion particle effect
     public SkinnedMeshRenderer objectRenderer;       //Bomb main mesh renderer
     public LayerMask clickLayerMask;
-
+    private CharatereMovements Cmouv;
+    private Charateremodel Cmodel;
     private MoveCondor condorManager;
     private SoundManager soundManager;
     private bool isActive;
-
+    public ParticleSystem par;
+    private personnage perso;
     private void OnEnable()
     {
+        if (Cmouv == null)
+            Cmouv = FindObjectOfType<CharatereMovements>(true);
+        if (Cmodel == null)
+            Cmodel = FindObjectOfType<Charateremodel>(true);
+        if (perso == null)
+            perso = FindObjectOfType<personnage>(true);
         //Get condor
         if (condorManager == null)
             condorManager = FindObjectOfType<MoveCondor>(true);
@@ -41,7 +49,12 @@ public class BombManager : MonoBehaviour
         if (isActive && other.CompareTag("Player"))
         {
             Explode();
-            KillPlayer();
+            if (par != null)
+                par.Play();
+            perso.mourir(2);
+            Cmouv.est_mort = true;
+            Cmodel.est_mort = true;
+            StartCoroutine(waitFordead(4f));
         }
     }
 
@@ -72,8 +85,10 @@ public class BombManager : MonoBehaviour
         ScoreManager.instance.AddScore(10);
     }
 
-    private void KillPlayer()
+    private IEnumerator waitFordead(float t)
     {
+        //attendre la fin de l'animation pour recommencer 
+        yield return new WaitForSeconds(t);
         GameManager.instance.GameOver();
     }
 

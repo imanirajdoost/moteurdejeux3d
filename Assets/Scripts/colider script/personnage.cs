@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Manages chicken animation
+/// By  Ahmad JREDA
+/// </summary>
 public class personnage : MonoBehaviour
 {
     // Start is called before the first frame update

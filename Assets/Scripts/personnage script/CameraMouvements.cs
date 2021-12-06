@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Manages camera axies 
+/// By Ahmad JREDA
+/// </summary>
 public class CameraMouvements : MonoBehaviour
 {
     // Start is called before the first frame update

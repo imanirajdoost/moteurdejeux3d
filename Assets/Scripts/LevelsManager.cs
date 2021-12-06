@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Checks if player has collected enough coins to unlock new levels
-/// By Iman IRAJ DOOST
+/// By Iman IRAJ DOOST and Ahmad JREDA
 /// </summary>
 public class LevelsManager : MonoBehaviour
 {
