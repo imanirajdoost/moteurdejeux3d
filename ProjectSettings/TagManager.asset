@@ -8,6 +8,10 @@ TagManager:
   - PowerUp
   - SpeedUp
   - coin
+  - FxTemporaire
+  - EasterEgg
+  - Bomb
+  - Condor
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Bomb
   - 
   - 
   - 

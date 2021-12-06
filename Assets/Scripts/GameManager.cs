@@ -7,16 +7,21 @@ using UnityEngine.UI;
 /// <summary>
 /// Manages different states of the game
 /// This is a singletone class
-/// Written by: Iman IRAJ DOOST
+/// Written by: Iman IRAJ DOOST and Ahmad JREDA
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public bool isDebug;                    //Used for some scripts to unlock supervisor mode and to return all unlocked things
+
     public static GameManager instance;     //Singletone object
 
     [Header("Options")]
     public bool isDead = false;             //Wheather or not the player is dead
     public bool isWon = false;              //Wheather or not the player has won
-    public bool IsPaused = false;
+    public bool IsPaused = false;           //Wheather or not the game is paused 
+    public bool Started = false;            //Wheather or not the lvl is started
+    public bool CanRestart = false;
+
     public GameObject deathScreen;          //Screen to show when player fails
 
     public GameObject papaChicken;          //Papa chicken object
@@ -33,6 +38,10 @@ public class GameManager : MonoBehaviour
 
     public int nbcoin = 0;                  //Number of collected coins
     private EndCutscenemManager endSceneManager;
+    private CutsceneManager startCutsceneManager;
+    private Generator generator;
+
+    private static readonly string SAVED_COIN = "SavedCoin";
 
     private void Awake()
     {
@@ -43,6 +52,14 @@ public class GameManager : MonoBehaviour
 
         if (endSceneManager == null)
             endSceneManager = FindObjectOfType<EndCutscenemManager>();
+
+        if (startCutsceneManager == null)
+            startCutsceneManager = FindObjectOfType<CutsceneManager>();
+
+        if (generator == null)
+            generator = FindObjectOfType<Generator>(true);
+        nbcoin = PlayerPrefs.GetInt(SAVED_COIN, 0);
+        UpdateUI();
     }
 
     /// <summary>
@@ -54,15 +71,31 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Update the coin UI text based on the coins player has
+    /// </summary>
     private void UpdateUI()
     {
         coinTextUI.text = nbcoin.ToString();
     }
 
     /// <summary>
+    /// Save current player's coins in memory
+    /// </summary>
+    void saveCoin()
+    {
+        PlayerPrefs.SetInt(SAVED_COIN, nbcoin);
+    }
+
+    public int GetCurrentCoinCount()
+    {
+        return nbcoin;
+    }
+
+    /// <summary>
     /// Show the ending cutscene when player wins
     /// </summary>
-    private void Win()
+    public void Win()
     {
         if (isDead)
         {
@@ -73,12 +106,24 @@ public class GameManager : MonoBehaviour
         Debug.Log("YOU WON!");
         if (!isWon)
         {
+            saveCoin();
             isWon = true;
+            sliderDistance.gameObject.SetActive(false);
+            StartCoroutine(waitAnimationForRestart(15));
+            //papaChicken.GetComponent<Animator>().SetBool("CondorColide", true);
+            ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
             endSceneManager.StartEndCutscene();
             papaChicken.SetActive(false);
             condorObject.SetActive(false);
+            //Started = false;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
 
+    private IEnumerator waitAnimationForRestart(float t)
+    {
+        yield return new WaitForSeconds(t);
+        CanRestart = true;
     }
 
     /// <summary>
@@ -92,13 +137,41 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!Started && !isDead)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+                generator.NextMap();
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                generator.PreviousMap();
+            if (Input.GetKeyDown(KeyCode.Space))        //Start game
+            {
+                if (generator.IsCurrentLevelUnlocked())
+                {
+                    Started = true;
+                    ScoreManager.instance.UpdateUI();
+                    startCutsceneManager.StartCutscene();
+                }
+            }
+     
+                return;
+        }
+        if (CanRestart)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))        //Start game
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
+        }
+
         //Calculate distance from player to condor each frame to see if player has won/lost
         //Get the normal of the distance [0,1] and update the slider accordingly
         float NormalDist = CalculateDistance();
         UpdateSlider(NormalDist);
         float dist = Vector2.Distance(papaChicken.transform.position,condorObject.transform.position);
-        if (dist < winDist)
-            Win();
+        //if (dist < winDist)
+            //Win();
         if (dist > maxDistance)
             Lose();
 
@@ -107,9 +180,12 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Time.timeScale = 1;
+                Started = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+
+
     }
 
     /// <summary>
@@ -117,8 +193,12 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        if (isDebug)
+            return;
+        ScoreManager.instance.SaveHighScore(generator.GetSelectedMapIndex());
         deathScreen.SetActive(true);
         Time.timeScale = 0;
+        Started = false;
         isDead = true;
     }
 

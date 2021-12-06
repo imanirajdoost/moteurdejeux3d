@@ -6,8 +6,6 @@ public class pause : MonoBehaviour
 {
     public string mainMenuScene;
     public GameObject pauseMenu;
-    public bool isPaused;
-  
     // Start is called before the first frame update
     void Start()
     {
@@ -19,21 +17,27 @@ public class pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //si quand le joueur appuit il est deja en pause alors le jeu reprend 
-            if (isPaused)
+            if (GameManager.instance.Started)
             {
-                isPaused = false;
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1;
-                GameManager.instance.IsPaused = true;
+                //si quand le joueur appuit il est deja en pause alors le jeu reprend 
+                if (!GameManager.instance.IsPaused)
+                {
+                    pauseMenu.SetActive(false);
+                    Time.timeScale = 1;
+                    GameManager.instance.IsPaused = true;
 
+                }
+                else
+                {
+                    //mise en pause du jeu 
+                    pauseMenu.SetActive(true);
+                    Time.timeScale = 0;
+                    GameManager.instance.IsPaused = false;
+                }
             }
-            else
+        else
             {
-                //mise en pause du jeu 
-                isPaused = true;
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0;
+                Application.Quit();
             }
         }
             

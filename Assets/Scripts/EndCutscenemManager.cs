@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Manager script for the ending cutscene
-/// By: Iman IRAJ DOOST
+/// By: Iman IRAJ DOOST and Ahmad JREDA
 /// </summary>
 public class EndCutscenemManager : MonoBehaviour
 {
@@ -21,6 +21,10 @@ public class EndCutscenemManager : MonoBehaviour
     public Animator papaChickAnimation;     //papa chicken animator
     public GameObject babyChick;            //baby chicken object
     public GameObject winPanel;             //Congrats winning panel
+    public ParticleSystem WiningParticle;
+    public ParticleSystem BeforWinnigParticle;
+    public ParticleSystem condorTrash;
+    public CharatereMovements Cmouv;
     #endregion
 
     #region Private Vars
@@ -32,6 +36,8 @@ public class EndCutscenemManager : MonoBehaviour
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();        //Cache the sound manager object
+        if (Cmouv == null)
+            Cmouv = FindObjectOfType<CharatereMovements>(true);
     }
 
     private void Update()
@@ -41,6 +47,11 @@ public class EndCutscenemManager : MonoBehaviour
         if(shouldShakeCam2)
             cameraShaker2.InduceStress(1f);
     }
+    private IEnumerator StartAnimationAfter(float t)
+    {
+        yield return new WaitForSeconds(t);
+
+    }
 
     public void StartEndCutscene()
     {
@@ -48,12 +59,15 @@ public class EndCutscenemManager : MonoBehaviour
             soundManager.StopMainMusic();               //Stop the main music
         shouldShakeCam1 = true;                         //Start shaking the camera
         SwitchCamera(cameras[1]);                       //Disable main camera and zoom into the face of papa chicken!
-        if(soundManager != null)
+        if (soundManager != null)
             soundManager.PlayAirplaneSound();           //Play the airplane sound
         StartCoroutine(ShowFightAfter(5f));             //Show the fight scene
         StartCoroutine(DropCondorAfter(11f));            //Drop the condor from the air
+        //TODO EFFECT OF WINING PARTCILE 
+
         StartCoroutine(ShowPapachickAndChildAfter(14f)); //Show papa chicken and its child on the screen for victory
-        StartCoroutine(ShowWinPanelAfter(17f));         //Show the winning panel
+        StartCoroutine(ShowWinPanelAfter(17f));
+        //Show the winning panel
     }
 
     #region IEnumerator Methods
@@ -65,6 +79,10 @@ public class EndCutscenemManager : MonoBehaviour
         papaChickAnimation.gameObject.SetActive(true);
         papaChickAnimation.SetBool("Fly",true);
         babyChick.SetActive(true);
+        if (BeforWinnigParticle != null)
+            BeforWinnigParticle.Play();
+        if (condorTrash != null)
+            condorTrash.Play();
     }
 
     private IEnumerator ShowPapachickAndChildAfter(float t)
@@ -73,6 +91,8 @@ public class EndCutscenemManager : MonoBehaviour
         SwitchCamera(cameras[3]);               //Switch to final camera
         if (soundManager != null)
             soundManager.PlayVictorySound();    //Play victory sound
+        if (WiningParticle != null)
+            WiningParticle.Play();
     }
 
     private IEnumerator ShowWinPanelAfter(float t)

@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4758,7 +4758,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7a1843ab6f181834680d44fc823df284, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4975,7 +4975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2b777ce679499428b79e6767b6810f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shines: {fileID: 8504567344859222899}
+  shines: {fileID: 695409878}
   audi: {fileID: 2012668219}
 --- !u!1001 &5510180081409630238
 PrefabInstance:
@@ -5002,15 +5002,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.05
+      value: 51.05656
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.13
+      value: 7.42
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.76
+      value: -18.56324
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ac652e5adf88049a4c9aa752abbe2e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5166,8 +5166,3 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 11400006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
---- !u!198 &8504567344859222899 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
-  m_PrefabInstance: {fileID: 8504567344873770165}
-  m_PrefabAsset: {fileID: 0}
