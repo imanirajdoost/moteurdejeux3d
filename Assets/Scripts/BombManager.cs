@@ -105,7 +105,7 @@ public class BombManager : MonoBehaviour
                 condorManager.SlowDown();
             soundManager.PlayBombSound();
             DisableRenderer();
-            StartCoroutine(DisableAfterT(1f));
+            StartCoroutine(DisableAfterT(5f));
         }
     }
     
