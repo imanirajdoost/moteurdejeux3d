@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
                     startCutsceneManager.StartCutscene();
                 }
             }
+     
                 return;
         }
         if (CanRestart)
