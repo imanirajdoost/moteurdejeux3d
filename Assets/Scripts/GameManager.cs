@@ -71,11 +71,17 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Update the coin UI text based on the coins player has
+    /// </summary>
     private void UpdateUI()
     {
         coinTextUI.text = nbcoin.ToString();
     }
 
+    /// <summary>
+    /// Save current player's coins in memory
+    /// </summary>
     void saveCoin()
     {
         PlayerPrefs.SetInt(SAVED_COIN, nbcoin);
@@ -83,7 +89,7 @@ public class GameManager : MonoBehaviour
 
     public int GetCurrentCoinCount()
     {
-        return GameManager.instance.nbcoin;
+        return nbcoin;
     }
 
     /// <summary>

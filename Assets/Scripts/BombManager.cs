@@ -51,6 +51,8 @@ public class BombManager : MonoBehaviour
             Explode();
             if (par != null)
                 par.Play();
+            if (soundManager != null)
+                soundManager.StopMainMusic();
             perso.mourir(2);
             Cmouv.est_mort = true;
             Cmodel.est_mort = true;
